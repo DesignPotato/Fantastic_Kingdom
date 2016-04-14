@@ -1,0 +1,14 @@
+#gitignore file
+#-----------------------------------------
+#Unity Specific ignores
+#
+**/Library/*
+**/Temp/*
+**/*.csproj
+**/*.unityproj
+**/*.sln
+**/*.userprefs
+**/*.pidb
+
+# include meta files
+!*.*.meta
