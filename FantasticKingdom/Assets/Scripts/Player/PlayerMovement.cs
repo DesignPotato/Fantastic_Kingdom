@@ -48,6 +48,15 @@ public class PlayerMovement : MonoBehaviour {
         {
             playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
         }
+		if(Input.GetMouseButtonDown(1))
+		{
+			ActionAnim (1);
+		}
+		if(Input.GetMouseButtonDown(0))
+		{
+			ActionAnim (2);
+		}
+			
     }
 
     //control player movement
@@ -71,6 +80,19 @@ public class PlayerMovement : MonoBehaviour {
         anim.SetBool("IsWalking", walking);
         //TODO set animations for attack/jumping/rolling etc
     }
+
+	void ActionAnim(float action)
+	{
+		if(action == 1)
+		{
+			anim.SetTrigger ("HeavyAttack");
+		}
+		if(action == 2)
+		{
+			anim.SetTrigger ("LightAttack");
+		}
+			
+	}
 
     //Checks that player is on the ground (within error)
     bool IsGrounded()
