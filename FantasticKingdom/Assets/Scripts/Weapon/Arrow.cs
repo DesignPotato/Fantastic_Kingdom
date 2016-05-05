@@ -4,12 +4,15 @@ using System.Collections;
 public class Arrow : MonoBehaviour {
 
     private Rigidbody rb;
-    private Vector3 direction = new Vector3(-5.0f, -5.0f, 0.0f);
+    public Vector3 Direction;// = new Vector3(-5.0f, -5.0f, 0.0f);
+    private float force = -30f;
 
 	// Use this for initialization
 	void Start () {
+        var angle = transform.rotation.eulerAngles;
+        Direction = new Vector3(Direction.x * force, Direction.y * force, Direction.z * force);
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(direction, ForceMode.Impulse);
+        rb.AddForce(Direction, ForceMode.Impulse);
     }
 	
 	// Update is called once per frame
