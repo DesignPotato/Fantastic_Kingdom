@@ -9,6 +9,7 @@ public class Arrow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        // Set up arrow angle and force.
         var angle = transform.rotation.eulerAngles;
         Direction = new Vector3(Direction.x * force, Direction.y * force, Direction.z * force);
         rb = GetComponent<Rigidbody>();
@@ -24,6 +25,13 @@ public class Arrow : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         Debug.Log("Arrow hit");
-        GameObject.Destroy(this.gameObject);
+        this.transform.position = col.contacts[0].point;
+        this.GetComponent<Collider>().isTrigger = true;
+
+        transform.parent = col.transform;
+
+        Destroy(GetComponent<Rigidbody>());
+        col.gameObject.SendMessage("arrowHit", SendMessageOptions.DontRequireReceiver);
+        //GameObject.Destroy(this.gameObject);
     }
 }
