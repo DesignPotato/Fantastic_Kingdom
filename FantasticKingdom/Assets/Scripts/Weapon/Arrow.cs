@@ -31,7 +31,7 @@ public class Arrow : MonoBehaviour {
         {
             return;
         }
-
+        
         Debug.Log("Arrow hit");
         this.transform.position = col.contacts[0].point;
         this.GetComponent<Collider>().isTrigger = true;
