@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
         }
-        if (Input.GetKeyDown(KeyCode.Q) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded())
         {      
             Roll();
         }
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour {
     //player carry out jump action
     void Jump()
     {
-            playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);  
+        playerRigidBody.AddForce(new Vector3(0, jumpVelocity, 0), ForceMode.VelocityChange);
     }
 
     //Player carry out roll action
@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 dir = (transform.forward * forward) + (transform.right * strafe);
         dir = dir.normalized * speed * Time.deltaTime;
 
-        playerRigidBody.velocity = rollVelocity * dir;
+        playerRigidBody.AddForce(dir*rollVelocity, ForceMode.VelocityChange);
 
     }
 
@@ -98,7 +98,6 @@ public class PlayerMovement : MonoBehaviour {
     {
         bool walking = f != 0f || s != 0f;
         anim.SetBool("IsWalking", walking);
-        //TODO set animations for attack/jumping/rolling etc
     }
 
 	void ActionAnim(Action action)

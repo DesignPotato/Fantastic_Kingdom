@@ -15,6 +15,8 @@ public class ThirdPersonCamera : MonoBehaviour {
     public float yMinLimit = -25f;
     public float yMaxLimit = 70f;
 
+    public static float xRotation = 0.0f;
+
     private float x = 0.0f;
     private float y = 0.0f;
 
@@ -22,7 +24,7 @@ public class ThirdPersonCamera : MonoBehaviour {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Vector3 angles = transform.eulerAngles;
-        x = angles.y;
+        xRotation = angles.y;
         y = angles.x;
     }
 	
@@ -31,7 +33,7 @@ public class ThirdPersonCamera : MonoBehaviour {
         if (target)
         {
             //Mouse look controls
-            x += Input.GetAxis("Mouse X") * xSensitivity * 0.02f;
+            xRotation += Input.GetAxis("Mouse X") * xSensitivity * 0.02f;
             y -= Input.GetAxis("Mouse Y") * ySensitivity * 0.02f;
 
             //Controller look controls
@@ -40,7 +42,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
+            Quaternion rotation = Quaternion.Euler(y, xRotation, 0);
             Vector3 position = rotation * new Vector3(bufferright, 0.0f, -distance) + target.position + new Vector3(0.0f, bufferup, 0.0f);
 
             transform.rotation = rotation;
