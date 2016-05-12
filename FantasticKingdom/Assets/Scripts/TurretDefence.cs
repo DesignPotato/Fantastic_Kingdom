@@ -17,7 +17,7 @@ public class TurretDefence : MonoBehaviour {
     void Start () {
         // Set shoot start point
         Debug.Log(GetComponent<Collider>().bounds.size.y);
-        _arrowSourcePos = new Vector3(transform.position.x, GetComponent<Collider>().bounds.size.y + 8, transform.position.z);
+        _arrowSourcePos = new Vector3(transform.position.x, GetComponent<Collider>().bounds.size.y, transform.position.z);
         
     }
 	
@@ -30,8 +30,10 @@ public class TurretDefence : MonoBehaviour {
         if (_targets.Length > 0 && _lastShotTime.AddSeconds(_shotsIntervalInSeconds) <= DateTime.Now)
         {
             //_arrowSourcePos = Vector3.MoveTowards(_arrowSourcePos, _targets[0].transform.position, 0.5f);
+            var firstTargetPos = _targets[0].transform.position;
+            var arrowSourcePosOffset = new Vector3(firstTargetPos.x, _arrowSourcePos.y, firstTargetPos.z);
 
-            _arrowSourcePos = Vector3.MoveTowards(_arrowSourcePos, _targets[0].transform.position, 3);
+            _arrowSourcePos = Vector3.MoveTowards(_arrowSourcePos, arrowSourcePosOffset, 0.5f);
             // Shoot at the 1st target
             var myArrow = (GameObject)Instantiate(ArrowPrefab, _arrowSourcePos, Quaternion.identity);
             myArrow.transform.LookAt(_targets[0].transform.position);
