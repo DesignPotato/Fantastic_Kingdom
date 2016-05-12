@@ -5,7 +5,7 @@ using System;
 public class TurretDefence : MonoBehaviour {
     public GameObject ArrowPrefab;
     public int FirePowerRadius = 10;
-    public float ArrowSourcePosY = 9f;
+    //public float ArrowSourcePosY = 9f;
     public LayerMask Mask;
 
     private Collider[] _targets;
@@ -16,7 +16,9 @@ public class TurretDefence : MonoBehaviour {
     // Use this for initialization
     void Start () {
         // Set shoot start point
-        _arrowSourcePos = new Vector3(transform.position.x, ArrowSourcePosY, transform.position.z);
+        Debug.Log(GetComponent<Collider>().bounds.size.y);
+        _arrowSourcePos = new Vector3(transform.position.x, GetComponent<Collider>().bounds.size.y + 8, transform.position.z);
+        
     }
 	
 	// Update is called once per frame
@@ -29,6 +31,7 @@ public class TurretDefence : MonoBehaviour {
         {
             //_arrowSourcePos = Vector3.MoveTowards(_arrowSourcePos, _targets[0].transform.position, 0.5f);
 
+            _arrowSourcePos = Vector3.MoveTowards(_arrowSourcePos, _targets[0].transform.position, 3);
             // Shoot at the 1st target
             var myArrow = (GameObject)Instantiate(ArrowPrefab, _arrowSourcePos, Quaternion.identity);
             myArrow.transform.LookAt(_targets[0].transform.position);
