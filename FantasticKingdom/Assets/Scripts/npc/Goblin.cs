@@ -3,19 +3,22 @@ using System.Collections;
 
 public class Goblin : Unit {
 
-    public const int SPEED = 5;
+    public GameObject GoldPile;
 
 	// Use this for initialization
 	public override void Start () {
+        GoldPile = GameObject.Find("GoldPile");
 
         //Some initial values
-        health = 5d;
+        health = 10d;
         armour = 0;
         magResist = 0;
-        damage = 0;
+        damage = 5;
+        speed = 5;
 
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = SPEED;
+        agent.speed = speed;
+        agent.destination = GoldPile.transform.position;
     }
 	
 	// Update is called once per frame
