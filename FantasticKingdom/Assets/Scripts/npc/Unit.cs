@@ -8,7 +8,7 @@ public abstract class Unit : MonoBehaviour{
     protected int armour;
     protected int magResist;
     protected int damage;
-    protected int speed;
+    public int speed;
 
     //For navigation
     protected NavMeshAgent agent;
