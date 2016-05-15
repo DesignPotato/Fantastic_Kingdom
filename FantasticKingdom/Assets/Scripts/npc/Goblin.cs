@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Goblin : Unit {
 
+    public const int GOLDSTEAL = 10;
     public GameObject GoldPile;
+    private int goldStolen = 0;
 
 	// Use this for initialization
 	public override void Start () {
@@ -25,4 +27,19 @@ public class Goblin : Unit {
 	public override void Update () {
 	
 	}
+
+    //Handles stealing gold
+    public void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.name.Equals("GoldPile") && goldStolen == 0)
+        {
+            goldStolen = col.gameObject.GetComponent<GoldPile>().deductGold(GOLDSTEAL);
+            agent.destination = GameObject.Find("Spawner").transform.position;
+        }
+
+        if (col.gameObject.name.Equals("Spawner") && (goldStolen > 0 || GameObject.Find("GoldPile").GetComponent<GoldPile>().getGold() == 0))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

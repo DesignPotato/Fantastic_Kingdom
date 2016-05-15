@@ -23,8 +23,10 @@ public class GoldPile : MonoBehaviour {
         return gold;
     }
 
-    //Handles collisions with enemies stealing gold
-    public void OnCollisionEnter(Collision col){
-
+    public int deductGold(int amount)
+    {
+        int i = gold - amount >= 0 ? amount : gold;
+        gold -= i;
+        return i;
     }
 }
