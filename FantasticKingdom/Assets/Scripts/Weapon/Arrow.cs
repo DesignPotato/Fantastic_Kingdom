@@ -15,9 +15,7 @@ public class Arrow : MonoBehaviour {
         rb.AddForce(ShootDirection, ForceMode.Impulse);
     }
 	
-	// Update is called once per frame
-	void FixedUpdate () {
-        //Debug.Log("Arrow Update");
+	void Update () {
     }
 
     void OnCollisionEnter(Collision col)
@@ -28,6 +26,5 @@ public class Arrow : MonoBehaviour {
         transform.parent = col.transform;
         Destroy(GetComponent<Rigidbody>());
         col.gameObject.SendMessage("arrowHit", SendMessageOptions.DontRequireReceiver);
-        //GameObject.Destroy(this.gameObject);
     }
 }

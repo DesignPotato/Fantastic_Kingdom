@@ -40,6 +40,8 @@ public class TurretDefence : MonoBehaviour {
             myArrow.transform.Rotate(90, 0, 0);
             myArrow.GetComponent<Arrow>().ShootDirection = (myArrow.transform.position - _targets[0].transform.position).normalized;
             myArrow.GetComponent<Arrow>().ShootForce = -30f; //this.gameObject;
+            Destroy(myArrow, 5); // // Arrow will be destoried after 5 seconds. #performance
+            //myArrow.GetComponent<Arrow>().LifeTime = 5; 
             _lastShotTime = DateTime.Now;
             //Debug.Log("Turret Fire!");
         }
