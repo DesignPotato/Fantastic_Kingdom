@@ -1407,7 +1407,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1520790131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743d3e96823954f4c85ca9765e4cabce, type: 3}
+  m_Script: {fileID: 11500000, guid: bf3ffd2c45280154faed2762304aeede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!23 &1520790133
@@ -1962,9 +1962,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1929006209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f876f66a82178e40a231361e5fd9e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 57a45eedf05b40c4a84d53ac78abfa36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startGold: 100
 --- !u!4 &1977850319 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 9bf463891f57d4b1ebead4fbd74fc076, type: 3}
