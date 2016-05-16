@@ -33,7 +33,7 @@ GameObject:
   - 114: {fileID: 11415934}
   - 114: {fileID: 11456514}
   - 82: {fileID: 8280220}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GoblinTemp
   m_TagString: Enemy
   m_Icon: {fileID: 0}
