@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
@@ -8,6 +9,18 @@ public class PlayerMovement : MonoBehaviour {
     public float rollVelocity = 150f;
     public float defaultSpeed = 6f;
     public float sprintSpeed = 24f;
+
+	// Cooldown fields
+	public Image CDBar;
+	private float currentCD = 0;
+	private float maxCD = 1;
+	private float LIGHT_ATK_CD = 50;
+	private float HEAVY_ATK_CD = 100;
+
+	// Health fields
+	public Image HPBar;
+	public float currentHP = 87;
+	public float maxHP = 120;
 
     Vector3 movement;
     Rigidbody playerRigidBody;
@@ -55,16 +68,50 @@ public class PlayerMovement : MonoBehaviour {
         {      
             Roll();
         }
-        if (Input.GetMouseButtonDown(0))
+
+		Attack ();
+		Health ();
+    }
+
+	/** Checks for cooldown. If no cooldown and an attack button is being pressed then perform the attack */
+	void Attack(){
+		// Cooldown
+		if(currentCD > 0){
+			float CDRatio = 50 * currentCD / maxCD;
+			CDBar.rectTransform.sizeDelta = new Vector2 (50, CDRatio);
+			CDBar.rectTransform.localPosition = new Vector3 (0, 25 - CDRatio/2, 0);
+			currentCD--;
+			return;
+		}
+		CDBar.rectTransform.sizeDelta = new Vector2 (0, 50); // Clean up
+
+		// Attack
+		if (Input.GetMouseButtonDown(0))
 		{
-            ActionAnim(Action.LIGHT_ATTACK);
+			ActionAnim(Action.LIGHT_ATTACK);
+			maxCD = LIGHT_ATK_CD;
+			currentCD = LIGHT_ATK_CD;
 		}
 		if(Input.GetMouseButtonDown(1))
 		{
 			ActionAnim (Action.HEAVY_ATTACK);
+			maxCD = HEAVY_ATK_CD;
+			currentCD = HEAVY_ATK_CD;
 		}
-			
-    }
+	}
+
+	/** Checks for changes in currentHP field and applies them to the UI based on maxHP */
+	void Health(){
+		// Checks
+		if (currentHP < 0)
+			currentHP = 0;
+		if (currentHP > maxHP)
+			currentHP = maxHP;
+		// Update HPBar
+		float HPRatio = 200 * currentHP / maxHP;
+		HPBar.rectTransform.sizeDelta = new Vector2 (HPRatio, 22);
+		HPBar.rectTransform.localPosition = new Vector3 (HPRatio / 2 - 100, 0, 0);
+	}
 
     //control player movement
     void Move(float forward, float right)
@@ -106,11 +153,11 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			anim.SetTrigger ("HeavyAttack");
 		}
-		if(action == Action.LIGHT_ATTACK)
+		else if(action == Action.LIGHT_ATTACK)
 		{
 			anim.SetTrigger ("LightAttack");
 		}
-        if (action == Action.ROLL)
+        else if (action == Action.ROLL)
         {
             anim.SetTrigger("Roll");
         }
