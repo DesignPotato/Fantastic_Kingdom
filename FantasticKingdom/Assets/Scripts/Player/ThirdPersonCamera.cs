@@ -37,8 +37,10 @@ public class ThirdPersonCamera : MonoBehaviour {
             y -= Input.GetAxis("Mouse Y") * ySensitivity * 0.02f;
 
             //Controller look controls
-            //x += Input.GetAxis("Horizontal") * xSensitivity * 0.02f;
-            //y += Input.GetAxis("Vertical") * ySensitivity * 0.02f;
+			if(Input.GetAxis("JoyLookHori") > 0.4 || Input.GetAxis("JoyLookHori") < -0.4)
+				xRotation += Input.GetAxis("JoyLookHori") * xSensitivity * 0.02f;
+			if(Input.GetAxis("JoyLookVert") > 0.4 || Input.GetAxis("JoyLookVert") < -0.4)
+				y += Input.GetAxis("JoyLookVert") * ySensitivity * 0.02f;
 
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 

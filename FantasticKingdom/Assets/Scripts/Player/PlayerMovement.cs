@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
         }
-        if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded())
+		if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded())
         {      
             Roll();
         }
@@ -86,13 +86,13 @@ public class PlayerMovement : MonoBehaviour {
 		CDBar.rectTransform.sizeDelta = new Vector2 (0, 50); // Clean up
 
 		// Attack
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) || Input.GetAxis("JoyAttack") < -0.5)
 		{
 			ActionAnim(Action.LIGHT_ATTACK);
 			maxCD = LIGHT_ATK_CD;
 			currentCD = LIGHT_ATK_CD;
 		}
-		if(Input.GetMouseButtonDown(1))
+		if(Input.GetMouseButtonDown(1) || Input.GetAxis("JoyAttack") > 0.5)
 		{
 			ActionAnim (Action.HEAVY_ATTACK);
 			maxCD = HEAVY_ATK_CD;
