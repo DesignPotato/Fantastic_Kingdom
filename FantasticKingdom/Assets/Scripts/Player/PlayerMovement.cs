@@ -34,10 +34,12 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKey("left shift"))
         {
             speed = sprintSpeed;
+            anim.SetFloat("RunSpeed", 2);
         }
         else
         {
             speed = defaultSpeed;
+            anim.SetFloat("RunSpeed", 1);
         }
 
         Move(forward, strafe);
