@@ -25,6 +25,6 @@ public class Arrow : MonoBehaviour {
         this.GetComponent<Collider>().isTrigger = true;
         transform.parent = col.transform;
         Destroy(GetComponent<Rigidbody>());
-        col.gameObject.SendMessage("arrowHit", SendMessageOptions.DontRequireReceiver);
+        col.gameObject.SendMessage("ApplyDamage", 2.0f, SendMessageOptions.DontRequireReceiver);
     }
 }
