@@ -70,9 +70,7 @@ public class PlayerMovement : MonoBehaviour {
         {      
             Roll();
         }
-        if (CDBar != null)
             Attack ();
-        if (HPBar != null)
             Health ();
     }
 
@@ -81,12 +79,16 @@ public class PlayerMovement : MonoBehaviour {
 		// Cooldown
 		if(currentCD > 0){
 			float CDRatio = 50 * currentCD / maxCD;
-			CDBar.rectTransform.sizeDelta = new Vector2 (50, CDRatio);
-			CDBar.rectTransform.localPosition = new Vector3 (0, 25 - CDRatio/2, 0);
+            if (CDBar != null)
+            {
+                CDBar.rectTransform.sizeDelta = new Vector2(50, CDRatio);
+                CDBar.rectTransform.localPosition = new Vector3(0, 25 - CDRatio / 2, 0);
+            }
 			currentCD--;
 			return;
 		}
-		CDBar.rectTransform.sizeDelta = new Vector2 (0, 50); // Clean up
+        if (CDBar != null)
+            CDBar.rectTransform.sizeDelta = new Vector2 (0, 50); // Clean up
 
 		// Attack
 		if (Input.GetMouseButtonDown(0) || Input.GetAxis("JoyAttack") < -0.5)
@@ -112,8 +114,11 @@ public class PlayerMovement : MonoBehaviour {
 			currentHP = maxHP;
 		// Update HPBar
 		float HPRatio = 200 * currentHP / maxHP;
-		HPBar.rectTransform.sizeDelta = new Vector2 (HPRatio, 22);
-		HPBar.rectTransform.localPosition = new Vector3 (HPRatio / 2 - 100, 0, 0);
+        if (HPBar != null)
+        {
+            HPBar.rectTransform.sizeDelta = new Vector2(HPRatio, 22);
+            HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 100, 0, 0);
+        }
 	}
 
     //control player movement
