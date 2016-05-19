@@ -3174,9 +3174,6 @@ MonoBehaviour:
   defaultSpeed: 6
   sprintSpeed: 24
   CDBar: {fileID: 0}
-  HPBar: {fileID: 0}
-  currentHP: 87
-  maxHP: 120
 --- !u!114 &11409744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3237,7 +3234,8 @@ MonoBehaviour:
   damageImage: {fileID: 0}
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
-  text: {fileID: 0}
+  HealthText: {fileID: 0}
+  HPBar: {fileID: 0}
 --- !u!124 &12421902
 Behaviour:
   m_ObjectHideFlags: 1

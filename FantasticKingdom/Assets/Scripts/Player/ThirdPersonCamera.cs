@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ThirdPersonCamera : MonoBehaviour {
 
+    public Canvas PauseMenu;
+    PauseManager pauseManager;
+
     public Transform target;
     public float distance = 4.0f;
 
@@ -20,12 +23,18 @@ public class ThirdPersonCamera : MonoBehaviour {
     private float x = 0.0f;
     private float y = 0.0f;
 
+    Transform tempTarget;
+
     void Start () {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Vector3 angles = transform.eulerAngles;
         xRotation = angles.y;
         y = angles.x;
+        tempTarget = target;
+
+        if (PauseMenu != null)
+            pauseManager = PauseMenu.GetComponent<PauseManager>();
     }
 	
 
@@ -49,6 +58,22 @@ public class ThirdPersonCamera : MonoBehaviour {
 
             transform.rotation = rotation;
             transform.position = position;
+        }
+        if (pauseManager != null)
+        {
+            if (pauseManager.Paused)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                target = null;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                target = tempTarget;
+            }
+                
         }
     }
 

@@ -18,6 +18,6 @@ public class UnityEditorControl : MonoBehaviour {
 
     void Quit()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }

@@ -14,14 +14,14 @@ public class PlayerMovement : MonoBehaviour {
 	public Image CDBar;
 	private float currentCD = 0;
 	private float maxCD = 1;
-	private float LIGHT_ATK_CD = 50;
-	private float HEAVY_ATK_CD = 100;
+	private float LIGHT_ATK_CD = 35;
+	private float HEAVY_ATK_CD = 60;
 
 	// Health fields
-	public Image HPBar;
-	public float currentHP = 87;
-	public float maxHP = 120;
-
+	//public Image HPBar;
+	//public float currentHP = 87;
+	//public float maxHP = 120;
+    
     Vector3 movement;
     Rigidbody playerRigidBody;
     Animator anim;
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
             Roll();
         }
             Attack ();
-            Health ();
+            //Health ();
     }
 
 	/** Checks for cooldown. If no cooldown and an attack button is being pressed then perform the attack */
@@ -82,7 +82,8 @@ public class PlayerMovement : MonoBehaviour {
             if (CDBar != null)
             {
                 CDBar.rectTransform.sizeDelta = new Vector2(50, CDRatio);
-                CDBar.rectTransform.localPosition = new Vector3(0, 25 - CDRatio / 2, 0);
+                //CDBar.rectTransform.localPosition = new Vector3(0, 25 - CDRatio / 2, 0);
+                CDBar.rectTransform.localPosition = new Vector3(-26, 51 - CDRatio / 2, 0);
             }
 			currentCD--;
 			return;
@@ -106,6 +107,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	/** Checks for changes in currentHP field and applies them to the UI based on maxHP */
+    /*
 	void Health(){
 		// Checks
 		if (currentHP < 0)
@@ -120,6 +122,7 @@ public class PlayerMovement : MonoBehaviour {
             HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 100, 0, 0);
         }
 	}
+    */
 
     //control player movement
     void Move(float forward, float right)
