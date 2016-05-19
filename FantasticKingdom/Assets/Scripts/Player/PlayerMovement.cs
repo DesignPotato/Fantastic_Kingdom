@@ -70,9 +70,10 @@ public class PlayerMovement : MonoBehaviour {
         {      
             Roll();
         }
-
-        Attack ();
-		Health ();
+        if (CDBar != null)
+            Attack ();
+        if (HPBar != null)
+            Health ();
     }
 
 	/** Checks for cooldown. If no cooldown and an attack button is being pressed then perform the attack */

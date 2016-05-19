@@ -3067,7 +3067,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e802315051d5ead4ebc71130adc7df61, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 674c669f976938940b06c49451e9c4f4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3164,15 +3164,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 182322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4845e59154106e848988125656a11f21, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a16efe93a23ea24f8bf951db7a4271a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
-  currentHealth: 0
-  damageImage: {fileID: 0}
-  flashSpeed: 5
-  flashColour: {r: 1, g: 0, b: 0, a: 0.1}
-  text: {fileID: 0}
+  speed: 6
+  gravity: 3
+  jumpVelocity: 6
+  rollVelocity: 150
+  defaultSpeed: 6
+  sprintSpeed: 24
+  CDBar: {fileID: 0}
+  HPBar: {fileID: 0}
+  currentHP: 87
+  maxHP: 120
 --- !u!114 &11409744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3225,15 +3229,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 182322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1929e40a3509bb2488a13dae7dfa6851, type: 3}
+  m_Script: {fileID: 11500000, guid: 4845e59154106e848988125656a11f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  gravity: 3
-  jumpVelocity: 6
-  rollVelocity: 150
-  defaultSpeed: 6
-  sprintSpeed: 24
+  startingHealth: 100
+  currentHealth: 0
+  damageImage: {fileID: 0}
+  flashSpeed: 5
+  flashColour: {r: 1, g: 0, b: 0, a: 0.1}
+  text: {fileID: 0}
 --- !u!124 &12421902
 Behaviour:
   m_ObjectHideFlags: 1

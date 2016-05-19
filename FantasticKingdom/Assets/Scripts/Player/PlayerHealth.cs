@@ -29,14 +29,17 @@ public class PlayerHealth : MonoBehaviour {
 	void Update () {
         if (damaged)
         {
-            damageImage.color = flashColour;
+            if (damageImage != null)
+                damageImage.color = flashColour;
         }
         else
         {
-            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            if (damageImage != null)
+                damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         damaged = false;
-        text.text = "Health: " + currentHealth;
+        if (text != null)
+            text.text = "Health: " + currentHealth;
     }
 
     public void TakeDamage(int amount)
