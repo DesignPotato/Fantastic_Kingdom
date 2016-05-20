@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -7032,7 +7032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08fa173c95acaf49b9447200965518d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goblin: {fileID: 135010, guid: 143091a0f6091f54db29a6c2d74f9e52, type: 2}
 --- !u!4 &634231422
 Transform:
   m_ObjectHideFlags: 0
@@ -12125,8 +12124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8953d88f0ac70b64ba252db56a8d0dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGold: 100
-  text: {fileID: 679508852}
 --- !u!64 &1290252550
 MeshCollider:
   m_ObjectHideFlags: 0
