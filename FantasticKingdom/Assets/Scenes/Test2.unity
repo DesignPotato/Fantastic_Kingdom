@@ -9944,7 +9944,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1024520314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17760,7 +17760,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1953018055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17772,7 +17772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08fa173c95acaf49b9447200965518d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goblin: {fileID: 135010, guid: 143091a0f6091f54db29a6c2d74f9e52, type: 2}
+  goblin: {fileID: 195692, guid: e297bed781ad6ed43b4bf3ae30cd0c76, type: 2}
 --- !u!4 &1953018056
 Transform:
   m_ObjectHideFlags: 0
