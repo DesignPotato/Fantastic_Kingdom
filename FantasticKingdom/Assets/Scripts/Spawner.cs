@@ -1,24 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour {
 
-    private float time;
+    private List<Transform> spawnPoints;
 
 	// Use this for initialization
 	void Start () {
-        time = 3f;
-	}
+        spawnPoints = new List<Transform>();
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("SpawnPoint"))
+        {
+            spawnPoints.Add(g.transform);
+            GameObject newGoblin = (GameObject)Instantiate(Resources.Load("Goblin"), g.transform.position, g.transform.rotation);
+            newGoblin.gameObject.SetActive(true);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        time -= Time.deltaTime;
         
-        if(time <= 0)
+        if(false)
         {
             GameObject newGoblin = (GameObject)Instantiate(Resources.Load("Goblin"), transform.position, transform.rotation);
             newGoblin.gameObject.SetActive(true);
-            time = 3f;
         }
     }
 }
