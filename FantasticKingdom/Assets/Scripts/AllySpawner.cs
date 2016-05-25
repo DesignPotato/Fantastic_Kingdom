@@ -9,7 +9,7 @@ public class AllySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("SpawnAlly", 0, SpawnTime);
+        InvokeRepeating("SpawnAlly", 0.1f, SpawnTime);
 	}
 	
 	// Update is called once per frame
