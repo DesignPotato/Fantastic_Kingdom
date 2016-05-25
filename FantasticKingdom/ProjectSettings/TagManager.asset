@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - SpawnPoint
+  - GoldPile
   layers:
   - Default
   - TransparentFX
