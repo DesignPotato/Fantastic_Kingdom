@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour {
-
+    
     public float startingHealth = 100f;
     public float currentHealth;
     public Image damageImage;

@@ -3,6 +3,11 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
+
+    //Mouse control character look
+    public float horizontalSensitivity = 250f;
+
+    //Movement stats
     public float speed = 6f;
     public float gravity = 3f;
     public float jumpVelocity = 6f;
@@ -17,16 +22,25 @@ public class PlayerMovement : MonoBehaviour {
 	private float LIGHT_ATK_CD = 35;
 	private float HEAVY_ATK_CD = 60;
 
-	// Health fields
-	//public Image HPBar;
-	//public float currentHP = 87;
-	//public float maxHP = 120;
-    
+    // Health fields
+    //public Image HPBar;
+    //public float currentHP = 87;
+    //public float maxHP = 120;
+
+    //Character look
+    float lookDirection = 0f;
+    bool dirLocked = true;
+
+    //
     Vector3 movement;
+    float distanceToGround;
+
+    //Components
     Rigidbody playerRigidBody;
     Animator anim;
     Collider playerCollider;
-    float distanceToGround;
+
+    
 
     enum Action {JUMP, ROLL, LIGHT_ATTACK, HEAVY_ATTACK };
 
@@ -37,8 +51,18 @@ public class PlayerMovement : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerCollider = GetComponent<Collider>();
         distanceToGround = playerCollider.bounds.extents.y;
+
+        //Character look fields
+        Vector3 angles = transform.eulerAngles;
+        lookDirection = angles.y;
     }
 
+    //----------------------------------------------------------------------------||
+    // Update Functions
+    //----------------------------------------------------------------------------||
+
+
+    //Called every physics step
 	void FixedUpdate()
     {
         float forward = Input.GetAxisRaw("Vertical");
@@ -60,6 +84,7 @@ public class PlayerMovement : MonoBehaviour {
         
     }
 
+    //called every frame
     void Update()
     {
         if (Input.GetButtonDown("Jump") && IsGrounded())
@@ -74,8 +99,33 @@ public class PlayerMovement : MonoBehaviour {
             //Health ();
     }
 
-	/** Checks for cooldown. If no cooldown and an attack button is being pressed then perform the attack */
-	void Attack(){
+    //called last, every frame
+    void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            dirLocked = false;
+        }
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            dirLocked = true;
+        }
+        if (dirLocked)
+        {
+            lookDirection = ThirdPersonCamera.xRotation;
+            Quaternion rotation = Quaternion.Euler(0, lookDirection, 0);
+            transform.rotation = rotation;
+        }
+
+    }
+
+
+    //----------------------------------------------------------------------------||
+    // Action Functions
+    //----------------------------------------------------------------------------||
+
+    /** Checks for cooldown. If no cooldown and an attack button is being pressed then perform the attack */
+    void Attack(){
 		// Cooldown
 		if(currentCD > 0){
 			float CDRatio = 50 * currentCD / maxCD;
