@@ -6,9 +6,10 @@ public class AllySpawner : MonoBehaviour {
     public Transform[] SpawnPoints;
     public float SpawnTime = 5.0f;
     public GameObject Ally;
+    public LayerMask enemiesLayer;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         InvokeRepeating("SpawnAlly", 0.1f, SpawnTime);
 	}
 	
@@ -19,8 +20,13 @@ public class AllySpawner : MonoBehaviour {
 
     void SpawnAlly()
     {
-        int spawnIndex = Random.Range(0, SpawnPoints.Length - 1);
+        int spawnIndex = Random.Range(0, SpawnPoints.Length);
         Transform spawnPoint = SpawnPoints[spawnIndex];
-        Instantiate(Ally, spawnPoint.position, spawnPoint.rotation);
+        GameObject ally = (GameObject)Instantiate(Ally, spawnPoint.position, spawnPoint.rotation);
+        Ally allyScript = ally.GetComponent<Ally>();
+        allyScript.goldPile = GameObject.Find("GoldPile");
+        allyScript.speed = 3;
+        allyScript.enemiesLayer = this.enemiesLayer;
+        allyScript.attackRange = 10.0f;
     }
 }

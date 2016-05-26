@@ -46,6 +46,7 @@ public class Spawner : MonoBehaviour {
             for(int y = 0; y < 5; y++)
             {
                 GameObject newGoblin = (GameObject)Instantiate(Resources.Load("Goblin"), spawnPoints[point].position, spawnPoints[point].rotation);
+                newGoblin.layer = LayerMask.NameToLayer("Enemies");
                 newGoblin.gameObject.SetActive(true);
             }
         }
