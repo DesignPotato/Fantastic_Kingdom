@@ -65,16 +65,21 @@ public class PlayerHealth : MonoBehaviour {
     void Death()
     {
         isDead = true;
-
         anim.SetTrigger("Die");
-
         playerMovement.enabled = false;
-        RestartLevel();
+        StartCoroutine(RespawnTimer(3));
     }
 
     public void RestartLevel()
     {
         SceneManager.LoadScene(0);
+    }
+
+    //Wait for the provided number of seconds
+    IEnumerator RespawnTimer(float time)
+    {
+        yield return new WaitForSeconds(3);
+        RestartLevel();
     }
 
     //Updates the UI component health bar
@@ -85,4 +90,26 @@ public class PlayerHealth : MonoBehaviour {
         //HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 100, 0, 0);
         HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 + 2, -13, 0);
     }
+
+    //----------------------------------------------------------------------------||
+    // Currently Useless code. kept here just in case
+    //----------------------------------------------------------------------------||
+
+    /** Checks for changes in currentHP field and applies them to the UI based on maxHP */
+    /*
+	void Health(){
+		// Checks
+		if (currentHP < 0)
+			currentHP = 0;
+		if (currentHP > maxHP)
+			currentHP = maxHP;
+		// Update HPBar
+		float HPRatio = 200 * currentHP / maxHP;
+        if (HPBar != null)
+        {
+            HPBar.rectTransform.sizeDelta = new Vector2(HPRatio, 22);
+            HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 100, 0, 0);
+        }
+	}
+    */
 }

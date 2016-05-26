@@ -21,14 +21,11 @@ public class PlayerMovement : MonoBehaviour {
 	private float maxCD = 1;
 	private float LIGHT_ATK_CD = 35;
 	private float HEAVY_ATK_CD = 60;
-
-    // Health fields
-    //public Image HPBar;
-    //public float currentHP = 87;
-    //public float maxHP = 120;
+    float ROLL_CD = 50;
+    bool attacking = false;
 
     //Character look
-    float lookDirection = 0f;
+    float HorizontalDirection = 0f;
     bool dirLocked = true;
 
     //
@@ -54,7 +51,7 @@ public class PlayerMovement : MonoBehaviour {
 
         //Character look fields
         Vector3 angles = transform.eulerAngles;
-        lookDirection = angles.y;
+        HorizontalDirection = angles.y;
     }
 
     //----------------------------------------------------------------------------||
@@ -78,10 +75,10 @@ public class PlayerMovement : MonoBehaviour {
             speed = defaultSpeed;
             anim.SetFloat("RunSpeed", 1);
         }
-
-        Move(forward, strafe);
+        if(!attacking)
+            Move(forward, strafe);
         Animating(forward, strafe);
-        
+     
     }
 
     //called every frame
@@ -92,11 +89,11 @@ public class PlayerMovement : MonoBehaviour {
             playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
         }
 		if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded())
-        {      
-            Roll();
+        {
+            if(currentCD == 0)
+                Roll(HorizontalDirection);
         }
-            Attack ();
-            //Health ();
+        Attack (HorizontalDirection);
     }
 
     //called last, every frame
@@ -112,11 +109,10 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (dirLocked)
         {
-            lookDirection = ThirdPersonCamera.xRotation;
-            Quaternion rotation = Quaternion.Euler(0, lookDirection, 0);
+            HorizontalDirection = ThirdPersonCamera.xRotation;
+            Quaternion rotation = Quaternion.Euler(0, HorizontalDirection, 0);
             transform.rotation = rotation;
         }
-
     }
 
 
@@ -125,7 +121,7 @@ public class PlayerMovement : MonoBehaviour {
     //----------------------------------------------------------------------------||
 
     /** Checks for cooldown. If no cooldown and an attack button is being pressed then perform the attack */
-    void Attack(){
+    void Attack(float dir){
 		// Cooldown
 		if(currentCD > 0){
 			float CDRatio = 50 * currentCD / maxCD;
@@ -140,39 +136,30 @@ public class PlayerMovement : MonoBehaviour {
 		}
         if (CDBar != null)
             CDBar.rectTransform.sizeDelta = new Vector2 (0, 50); // Clean up
+        if (currentCD == 0)
+        {
+            dirLocked = true;
+            attacking = false;
+        }
 
-		// Attack
-		if (Input.GetMouseButtonDown(0) || Input.GetAxis("JoyAttack") < -0.5)
+        // Attack
+        if (Input.GetMouseButtonDown(0) || Input.GetAxis("JoyAttack") < -0.5)
 		{
-			ActionAnim(Action.LIGHT_ATTACK);
+            dirLocked = false;
+            attacking = true;
+            ActionAnim(Action.LIGHT_ATTACK);
 			maxCD = LIGHT_ATK_CD;
 			currentCD = LIGHT_ATK_CD;
-		}
+        }
 		if(Input.GetMouseButtonDown(1) || Input.GetAxis("JoyAttack") > 0.5)
-		{
-			ActionAnim (Action.HEAVY_ATTACK);
+		{   
+            dirLocked = false;
+            attacking = true;
+            ActionAnim (Action.HEAVY_ATTACK);
 			maxCD = HEAVY_ATK_CD;
 			currentCD = HEAVY_ATK_CD;
-		}
-	}
-
-	/** Checks for changes in currentHP field and applies them to the UI based on maxHP */
-    /*
-	void Health(){
-		// Checks
-		if (currentHP < 0)
-			currentHP = 0;
-		if (currentHP > maxHP)
-			currentHP = maxHP;
-		// Update HPBar
-		float HPRatio = 200 * currentHP / maxHP;
-        if (HPBar != null)
-        {
-            HPBar.rectTransform.sizeDelta = new Vector2(HPRatio, 22);
-            HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 100, 0, 0);
         }
 	}
-    */
 
     //control player movement
     void Move(float forward, float right)
@@ -189,17 +176,41 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     //Player carry out roll action
-    void Roll()
+    void Roll(float dir)
     {
+        Vector3 direction;
+
         float forward = Input.GetAxisRaw("Vertical");
         float strafe = Input.GetAxisRaw("Horizontal");
-        
-        Vector3 dir = (transform.forward * forward) + (transform.right * strafe);
-        dir = dir.normalized * speed * Time.deltaTime;
 
-        playerRigidBody.AddForce(dir*rollVelocity, ForceMode.VelocityChange);
+        if (forward == 0 && strafe == 0)
+        {
+            direction = (transform.forward * dir);
+            direction = direction.normalized * speed * Time.deltaTime;
+        }
+        else
+        {
+            direction = (transform.forward * forward) + (transform.right * strafe);
+            direction = direction.normalized * speed * Time.deltaTime;
+        }   
+        dirLocked = false;
+        attacking = true;
+        maxCD = ROLL_CD;
+        currentCD = ROLL_CD;
+        playerRigidBody.AddForce(direction * rollVelocity, ForceMode.VelocityChange);
 
     }
+
+    //Checks that player is on the ground (within error)
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.05f);
+    }
+
+
+    //----------------------------------------------------------------------------||
+    // Animations
+    //----------------------------------------------------------------------------||
 
     //Sets animation controller states
     void Animating(float f, float s)
@@ -225,9 +236,5 @@ public class PlayerMovement : MonoBehaviour {
 			
 	}
 
-    //Checks that player is on the ground (within error)
-    bool IsGrounded()
-    {
-        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.05f);
-    }
+
 }
