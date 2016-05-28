@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour {
 
         enemyAudio.Play();
         currentHealth -= amount;
-        rb.AddForce(new Vector3(0, 100f, 0), ForceMode.VelocityChange);
+        rb.AddForce(new Vector3(0, 10f, 0), ForceMode.VelocityChange);
         if (currentHealth <= 0)
         {
             Death();

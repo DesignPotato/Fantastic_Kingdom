@@ -7729,6 +7729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3ffd2c45280154faed2762304aeede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnTime: 100
 --- !u!23 &764731264
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12361,7 +12362,7 @@ MonoBehaviour:
   - {fileID: 450840063}
   - {fileID: 1842385050}
   - {fileID: 596034017}
-  SpawnTime: 2
+  SpawnTime: 5
   Ally: {fileID: 122350, guid: 51c76a9e45d832d458e6006258e7dc1a, type: 2}
   enemiesLayer:
     serializedVersion: 2

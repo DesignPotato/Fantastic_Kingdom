@@ -34,7 +34,10 @@ public class Goblin : Unit {
         if(col.gameObject.name.Equals("GoldPile") && goldStolen == 0)
         {
             goldStolen = col.gameObject.GetComponent<GoldPile>().deductGold(GOLDSTEAL);
-            agent.destination = GameObject.Find("Spawner").transform.position;
+
+            var spawnerObj = GameObject.Find("Spawner");
+            if (spawnerObj != null)
+                agent.destination = spawnerObj.transform.position;
         }
 
         if (col.gameObject.name.Equals("Spawner") && (goldStolen > 0 || GameObject.Find("GoldPile").GetComponent<GoldPile>().getGold() == 0))
