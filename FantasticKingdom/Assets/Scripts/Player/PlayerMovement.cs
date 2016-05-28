@@ -22,7 +22,10 @@ public class PlayerMovement : MonoBehaviour {
 	private float LIGHT_ATK_CD = 35;
 	private float HEAVY_ATK_CD = 60;
     float ROLL_CD = 50;
+    float JUMP_CD = 50;
+    float jumpCD = 0;
     bool attacking = false;
+    bool jumping = false;
 
     //Character look
     float HorizontalDirection = 0f;
@@ -36,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
     Rigidbody playerRigidBody;
     Animator anim;
     Collider playerCollider;
+    NavMeshAgent agent;
 
     
 
@@ -47,6 +51,7 @@ public class PlayerMovement : MonoBehaviour {
         playerRigidBody.AddForce(Physics.gravity * gravity);
         anim = GetComponent<Animator>();
         playerCollider = GetComponent<Collider>();
+        agent = GetComponent<NavMeshAgent>();
         distanceToGround = playerCollider.bounds.extents.y;
 
         //Character look fields
@@ -84,8 +89,24 @@ public class PlayerMovement : MonoBehaviour {
     //called every frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        
+        if (jumpCD > 0)
         {
+            jumpCD -= 1;
+        }
+        else if(jumpCD == 0 && IsGrounded())
+        {
+            jumping = false;
+            if(agent)
+                agent.enabled = true;
+        }
+        
+        if (Input.GetButtonDown("Jump") && IsGrounded() && !jumping)
+        {
+            jumping = true;
+            jumpCD = JUMP_CD;
+            if (agent)
+                agent.enabled = false;
             playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
         }
 		if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded())
@@ -112,6 +133,15 @@ public class PlayerMovement : MonoBehaviour {
             HorizontalDirection = ThirdPersonCamera.xRotation;
             Quaternion rotation = Quaternion.Euler(0, HorizontalDirection, 0);
             transform.rotation = rotation;
+        }
+    }
+
+    //Resets status of
+    void Reset()
+    {
+        if (!jumping)
+        {
+
         }
     }
 
@@ -172,6 +202,9 @@ public class PlayerMovement : MonoBehaviour {
     //player carry out jump action
     void Jump()
     {
+        dirLocked = false;
+        attacking = true;
+        ActionAnim(Action.JUMP);
         playerRigidBody.AddForce(new Vector3(0, jumpVelocity, 0), ForceMode.VelocityChange);
     }
 
@@ -204,7 +237,7 @@ public class PlayerMovement : MonoBehaviour {
     //Checks that player is on the ground (within error)
     bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.05f);
+        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.005f);
     }
 
 
