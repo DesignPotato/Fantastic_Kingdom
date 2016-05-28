@@ -260,22 +260,6 @@ Prefab:
       propertyPath: GoldPile
       value: 
       objectReference: {fileID: 2070574956}
-    - target: {fileID: 8217314, guid: e297bed781ad6ed43b4bf3ae30cd0c76, type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11442662, guid: e297bed781ad6ed43b4bf3ae30cd0c76, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11476062, guid: e297bed781ad6ed43b4bf3ae30cd0c76, type: 2}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195692, guid: e297bed781ad6ed43b4bf3ae30cd0c76, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e297bed781ad6ed43b4bf3ae30cd0c76, type: 2}
   m_IsPrefabParent: 0
@@ -283,21 +267,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 195692, guid: e297bed781ad6ed43b4bf3ae30cd0c76, type: 2}
   m_PrefabInternal: {fileID: 1060788848}
---- !u!54 &1068997825
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1068997816}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1513752032
 Prefab:
   m_ObjectHideFlags: 0

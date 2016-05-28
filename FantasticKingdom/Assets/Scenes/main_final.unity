@@ -12364,7 +12364,7 @@ MonoBehaviour:
   - {fileID: 596034017}
   SpawnTime: 5
   Ally: {fileID: 122350, guid: 51c76a9e45d832d458e6006258e7dc1a, type: 2}
-  enemiesLayer:
+  EnemiesLayer:
     serializedVersion: 2
     m_Bits: 256
 --- !u!4 &1296564452

@@ -42,6 +42,11 @@ public class Ally : Unit {
 
 
             agent.destination = TargetTransform.position;
+            agent.Resume();
+        }
+        else //if no target stay where it is.
+        {
+            agent.Stop();
         }
 	}
 }

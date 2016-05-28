@@ -6,7 +6,7 @@ public class AllySpawner : MonoBehaviour {
     public Transform[] SpawnPoints;
     public float SpawnTime = 5.0f;
     public GameObject Ally;
-    public LayerMask enemiesLayer;
+    public LayerMask EnemiesLayer;
 
     // Use this for initialization
     void Start () {
@@ -26,7 +26,7 @@ public class AllySpawner : MonoBehaviour {
         Ally allyScript = ally.GetComponent<Ally>();
         allyScript.goldPile = GameObject.Find("GoldPile");
         allyScript.speed = 3;
-        allyScript.enemiesLayer = this.enemiesLayer;
+        allyScript.enemiesLayer = this.EnemiesLayer;
         allyScript.attackRange = 10.0f;
     }
 }
