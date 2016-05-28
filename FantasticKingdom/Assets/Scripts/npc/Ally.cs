@@ -27,9 +27,11 @@ public class Ally : Unit {
 	public override void Update () {
         potentialTargets = Physics.OverlapSphere(goldPile.transform.position, attackRange, enemiesLayer);
 
-        if (target == null && potentialTargets.Length > 0)
+        var numOfTargetsInRange = potentialTargets.Length;
+        if (target == null && numOfTargetsInRange > 0)
         {
-            target = potentialTargets[0].gameObject;
+            var targetIndexPicked = Random.Range(0, numOfTargetsInRange);
+            target = potentialTargets[targetIndexPicked].gameObject;
         }
 
         if (target != null)
