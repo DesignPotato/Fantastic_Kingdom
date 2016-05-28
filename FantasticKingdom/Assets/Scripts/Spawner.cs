@@ -17,6 +17,9 @@ public class Spawner : MonoBehaviour {
         }
         spawnTimer = SpawnTime;
         wave = 0;
+
+        //wave++;  // For debug only.
+        //spawn(); // For debug only.
     }
 	
 	// Update is called once per frame
