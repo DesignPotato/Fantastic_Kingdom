@@ -45,11 +45,12 @@ public class EnemyAttack : MonoBehaviour {
         {
             Attack();
         }
-
+        /*
         if (playerHealth.currentHealth <= 0)
         {
 
         }
+        */
     }
 
 

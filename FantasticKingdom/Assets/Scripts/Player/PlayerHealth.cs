@@ -87,8 +87,9 @@ public class PlayerHealth : MonoBehaviour {
     {
         float HPRatio = 270 * currentHealth / startingHealth;
         HPBar.rectTransform.sizeDelta = new Vector2(HPRatio, 32);
-		HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 81, 0.5f, 0);
+        //HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 81, 0.5f, 0);
         //HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 + 2, -13, 0);
+        HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 + 116, -57, 0);
     }
 
     //----------------------------------------------------------------------------||
