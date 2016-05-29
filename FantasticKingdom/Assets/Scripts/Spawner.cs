@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Spawner : MonoBehaviour {
 
     private List<Transform> spawnPoints;
-    public int SpawnTime = 10;
+    public int SpawnTime;
     private float spawnTimer;
     private int wave;
 
@@ -17,9 +17,6 @@ public class Spawner : MonoBehaviour {
         }
         spawnTimer = SpawnTime;
         wave = 0;
-
-        //wave++;  // For debug only.
-        //spawn(); // For debug only.
     }
 	
 	// Update is called once per frame
@@ -28,10 +25,16 @@ public class Spawner : MonoBehaviour {
 
         if (spawnTimer <= 0)
         {
+            Goblin.upStats(1.1f);
             spawn();
             spawnTimer = SpawnTime;
             wave++;
         }
+    }
+
+    public int spawnPointNumber()
+    {
+        return spawnPoints.Count;
     }
 
     private void spawn()
