@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GoldPile : MonoBehaviour {
@@ -7,16 +8,18 @@ public class GoldPile : MonoBehaviour {
     private int gold;
     //The amount of gold the player should begin with
     public int startGold = 100;
+    public Text text;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Awake () {
         gold = startGold;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if(text)
+            text.text = "Gold: " + gold;
+    }
 
     public int getGold()
     {

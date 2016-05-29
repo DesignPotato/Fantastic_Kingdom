@@ -12,8 +12,9 @@ public class PlayerMovement : MonoBehaviour {
     public float gravity = 3f;
     public float jumpVelocity = 6f;
     public float rollVelocity = 150f;
+    public float attackWalkSpeed = 4;
     public float defaultSpeed = 6f;
-    public float sprintSpeed = 24f;
+    public float sprintSpeed = 12f;
 
 	// Cooldown fields
 	public Image CDBar;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 
     //Character look
     float HorizontalDirection = 0f;
+    float previousDirection = 0f;
     bool dirLocked = true;
 
     //
@@ -40,6 +42,7 @@ public class PlayerMovement : MonoBehaviour {
     Animator anim;
     Collider playerCollider;
     NavMeshAgent agent;
+    PlayerSwordAttack playerSword;
 
     
 
@@ -53,6 +56,7 @@ public class PlayerMovement : MonoBehaviour {
         playerCollider = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
         distanceToGround = playerCollider.bounds.extents.y;
+        playerSword = GetComponentInChildren<PlayerSwordAttack>();
 
         //Character look fields
         Vector3 angles = transform.eulerAngles;
@@ -75,12 +79,17 @@ public class PlayerMovement : MonoBehaviour {
             speed = sprintSpeed;
             anim.SetFloat("RunSpeed", 2);
         }
+        else if (attacking)
+        {
+            speed = attackWalkSpeed;
+            anim.SetFloat("RunSpeed", 0.8f);
+        }
         else
         {
             speed = defaultSpeed;
             anim.SetFloat("RunSpeed", 1);
         }
-        if(!attacking)
+        //if(!attacking)
             Move(forward, strafe);
         Animating(forward, strafe);
      
@@ -130,9 +139,21 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (dirLocked)
         {
+            previousDirection = HorizontalDirection;
             HorizontalDirection = ThirdPersonCamera.xRotation;
-            Quaternion rotation = Quaternion.Euler(0, HorizontalDirection, 0);
-            transform.rotation = rotation;
+            if (Mathf.Abs(previousDirection-HorizontalDirection) > 10)
+            {
+                Quaternion rotation = Quaternion.Euler(0, HorizontalDirection, 0);
+                Quaternion from = Quaternion.Euler(0, previousDirection, 0);
+                //transform.rotation = rotation;
+                transform.rotation = Quaternion.Slerp(from, rotation, Time.time * 1.1f);
+            }
+            else
+            {
+                Quaternion rotation = Quaternion.Euler(0, HorizontalDirection, 0);
+                transform.rotation = rotation;
+            }
+            
         }
     }
 
@@ -170,16 +191,25 @@ public class PlayerMovement : MonoBehaviour {
         {
             dirLocked = true;
             attacking = false;
+            if (playerSword)
+            {
+                playerSword.FinishAttack();
+            }
         }
 
         // Attack
         if (Input.GetMouseButtonDown(0) || Input.GetAxis("JoyAttack") < -0.5)
 		{
+            previousDirection = HorizontalDirection;
             dirLocked = false;
             attacking = true;
             ActionAnim(Action.LIGHT_ATTACK);
 			maxCD = LIGHT_ATK_CD;
 			currentCD = LIGHT_ATK_CD;
+            if (playerSword)
+            {
+                playerSword.QuickAttack();
+            }
         }
 		if(Input.GetMouseButtonDown(1) || Input.GetAxis("JoyAttack") > 0.5)
 		{   
@@ -188,6 +218,10 @@ public class PlayerMovement : MonoBehaviour {
             ActionAnim (Action.HEAVY_ATTACK);
 			maxCD = HEAVY_ATK_CD;
 			currentCD = HEAVY_ATK_CD;
+            if (playerSword)
+            {
+                playerSword.PowerAttack();
+            }
         }
 	}
 

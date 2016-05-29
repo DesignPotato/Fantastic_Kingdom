@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour {
 
     AudioSource enemyAudio;
     Rigidbody rb;
+    Animator anim;
 
     //CapsuleCollider capsuleCollider;
     bool isDead;
@@ -16,6 +17,7 @@ public class EnemyHealth : MonoBehaviour {
     void Awake () {
         rb = GetComponent<Rigidbody>();
         enemyAudio = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
         //capsuleCollider = GetComponent<CapsuleCollider>();
 
         currentHealth = startingHealth;
@@ -44,7 +46,8 @@ public class EnemyHealth : MonoBehaviour {
     void Death()
     {
         isDead = true;
-
+        if (anim)
+            anim.SetTrigger("Die");
         //capsuleCollider.isTrigger = true;
         Destroy(gameObject, 0.5f);
     }
