@@ -48,8 +48,16 @@ public class Goblin : Unit {
         {
             goldStolen = col.gameObject.GetComponent<GoldPile>().deductGold(GOLDSTEAL);
 
-            int escape = Random.Range(0, GameObject.Find("Spawner").GetComponent<Spawner>().spawnPointNumber());
-            var spawnEscape = GameObject.Find("Spawn0" + escape);
+            int escape = Random.Range(1, GameObject.Find("Spawner").GetComponent<Spawner>().spawnPointNumber());
+            var spawnEscape = GameObject.Find("Spawn01");
+            if (escape > 9)
+            {
+                spawnEscape = GameObject.Find("Spawn" + escape);
+            }
+            else
+            {
+                spawnEscape = GameObject.Find("Spawn0" + escape);
+            }
             agent.destination = spawnEscape.transform.position;
         }
 
