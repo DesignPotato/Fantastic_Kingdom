@@ -1075,7 +1075,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 683468519e0402745a60abad3c3f56fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.17
+      value: 33.12
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 683468519e0402745a60abad3c3f56fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4022,7 +4022,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 683468519e0402745a60abad3c3f56fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.17
+      value: 33.07
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 683468519e0402745a60abad3c3f56fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15384,6 +15384,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -16234,6 +16235,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   PopulationCap: 20
+  attackRangeTier2: 20
+  attackRangeTier3: 30
 --- !u!4 &1296564452
 Transform:
   m_ObjectHideFlags: 0
@@ -16808,6 +16811,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -25000,7 +25004,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 683468519e0402745a60abad3c3f56fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.17
+      value: 32.98
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 683468519e0402745a60abad3c3f56fa, type: 3}
       propertyPath: m_LocalPosition.z
