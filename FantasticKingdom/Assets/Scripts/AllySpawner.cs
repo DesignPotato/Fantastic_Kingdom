@@ -10,6 +10,8 @@ public class AllySpawner : MonoBehaviour {
     public LayerMask EnemiesLayer;
     public IList<GameObject> Allies;
     public int PopulationCap = 20;
+    public float attackRangeTier2 = 20.0f;
+    public float attackRangeTier3 = 30.0f;
 
     // Use this for initialization
     void Start () {
@@ -34,7 +36,9 @@ public class AllySpawner : MonoBehaviour {
         allyScript.goldPile = GameObject.Find("GoldPile");
         allyScript.speed = 3;
         allyScript.enemiesLayer = this.EnemiesLayer;
-        allyScript.attackRange = 10.0f;
+        allyScript.attackRangeTier2 = attackRangeTier2;
+        allyScript.attackRangeTier3 = attackRangeTier3;
+        //allyScript.originSpawner = gameObject;
         Allies.Add(ally);
     }
 }

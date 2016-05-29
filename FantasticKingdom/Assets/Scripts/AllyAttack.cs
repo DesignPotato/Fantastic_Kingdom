@@ -17,7 +17,7 @@ public class AllyAttack : MonoBehaviour {
     {
         get
         {
-            return ((Ally)gameObject.GetComponentInParent(typeof(Ally))).target;
+            return ((Ally)gameObject.GetComponentInParent(typeof(Ally))).Target;
         }
     }
 
