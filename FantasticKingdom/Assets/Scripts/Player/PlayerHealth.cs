@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour {
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
     public Text HealthText;
-    public Image HPBar;
+    public RawImage HPBar;
 
     Animator anim;
     AudioSource playerDamagedAudio;
@@ -85,9 +85,9 @@ public class PlayerHealth : MonoBehaviour {
     //Updates the UI component health bar
     public void UpdateHealthBar()
     {
-        float HPRatio = 200 * currentHealth / startingHealth;
-        HPBar.rectTransform.sizeDelta = new Vector2(HPRatio, 22);
-        HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 100, 0, 0);
+        float HPRatio = 270 * currentHealth / startingHealth;
+        HPBar.rectTransform.sizeDelta = new Vector2(HPRatio, 32);
+		HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 81, 0.5f, 0);
         //HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 + 2, -13, 0);
     }
 

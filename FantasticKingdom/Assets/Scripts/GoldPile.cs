@@ -18,7 +18,7 @@ public class GoldPile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(text)
-            text.text = "Gold: " + gold;
+            text.text = "" + gold;
     }
 
     public int getGold()
