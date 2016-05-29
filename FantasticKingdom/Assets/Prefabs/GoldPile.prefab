@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a45eedf05b40c4a84d53ac78abfa36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGold: 1000
+  startGold: 350
   text: {fileID: 0}
 --- !u!135 &13587316
 SphereCollider:

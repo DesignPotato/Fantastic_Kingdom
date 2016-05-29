@@ -4,8 +4,15 @@ using System;
 
 public class AllyAttack : MonoBehaviour {
     public float attackRate = 0.5f;
+    public Animator anim;
     private float _nextAttack = 0.0f;
-
+    
+    void Awake()
+    {
+        //this script must be on child of ally
+        anim = transform.parent.GetComponent<Animator>();
+    }
+    
     private GameObject Target
     {
         get
@@ -31,6 +38,8 @@ public class AllyAttack : MonoBehaviour {
             var enemyHealth = col.gameObject.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(50);
             _nextAttack = Time.time + attackRate;
+            if(anim)
+                anim.SetTrigger("Attack");
             Debug.Log("Attack");
         }
     }
