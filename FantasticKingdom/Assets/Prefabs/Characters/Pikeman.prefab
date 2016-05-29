@@ -2406,7 +2406,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.14, y: -0.09362645, z: -22.980017}
+  m_LocalPosition: {x: 21.959082, y: -0.08760515, z: -7.175194}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441888}
@@ -3023,7 +3023,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   target: {fileID: 0}
-  attackRange: 20
+  attackRangeTier3: 20
 --- !u!136 &13638484
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -5,6 +5,7 @@ public class Goblin : Unit {
 
     public const int GOLDSTEAL = 10;
     public GameObject GoldPile;
+    public int numberOfAttackers;
     private int goldStolen = 0;
 
     static float HEALTHSTAT = 10f;
@@ -22,6 +23,7 @@ public class Goblin : Unit {
         magResist = MAGSTAT;
         damage = DAMAGESTAT;
         speed = 5;
+        numberOfAttackers = 0;
 
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
