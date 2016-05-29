@@ -4333,6 +4333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   currentHealth: 0
+  value: 20
 --- !u!135 &13554820
 SphereCollider:
   m_ObjectHideFlags: 1

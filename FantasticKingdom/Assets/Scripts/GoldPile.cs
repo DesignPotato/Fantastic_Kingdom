@@ -32,4 +32,9 @@ public class GoldPile : MonoBehaviour {
         gold -= i;
         return i;
     }
+
+    public void addGold(int amount)
+    {
+        gold += amount;
+    }
 }

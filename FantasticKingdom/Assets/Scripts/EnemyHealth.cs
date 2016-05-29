@@ -5,10 +5,13 @@ public class EnemyHealth : MonoBehaviour {
 
     public int startingHealth = 100;
     public int currentHealth;
+    GameObject goldPile;
+    public int value = 20;//temp
 
     AudioSource enemyAudio;
     Rigidbody rb;
     Animator anim;
+    GoldPile gold;
 
     //CapsuleCollider capsuleCollider;
     bool isDead;
@@ -19,7 +22,9 @@ public class EnemyHealth : MonoBehaviour {
         enemyAudio = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         //capsuleCollider = GetComponent<CapsuleCollider>();
-
+        goldPile = GameObject.Find("GoldPile");
+        if (goldPile)
+            gold = goldPile.GetComponent<GoldPile>();
         currentHealth = startingHealth;
     }
 	
@@ -49,6 +54,8 @@ public class EnemyHealth : MonoBehaviour {
         if (anim)
             anim.SetTrigger("Die");
         //capsuleCollider.isTrigger = true;
+        if (gold)
+            gold.addGold(value);
         Destroy(gameObject, 0.5f);
     }
 }
