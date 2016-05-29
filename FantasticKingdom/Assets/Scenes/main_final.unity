@@ -17774,7 +17774,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403238, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11431498, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
       propertyPath: PauseMenu

@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour {
     Rigidbody rb;
     Animator anim;
     GoldPile gold;
+    NavMeshAgent agent;
 
     //CapsuleCollider capsuleCollider;
     bool isDead;
@@ -21,6 +22,7 @@ public class EnemyHealth : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         enemyAudio = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         //capsuleCollider = GetComponent<CapsuleCollider>();
         goldPile = GameObject.Find("GoldPile");
         if (goldPile)
@@ -57,6 +59,8 @@ public class EnemyHealth : MonoBehaviour {
         //capsuleCollider.isTrigger = true;
         if (gold)
             gold.addGold(value);
-        Destroy(gameObject, 0.5f);
+        if (agent)
+            agent.enabled = false;
+        Destroy(gameObject, 2.5f);
     }
 }
