@@ -20,7 +20,7 @@ public class ThirdPersonCamera : MonoBehaviour {
     public float yMinLimit = -25f;
     public float yMaxLimit = 70f;
 
-    public static float xRotation = 0.0f;
+    public float xRotation = 0.0f;
 
     //private float x = 0.0f;
     private float verticalAngle = 0.0f;

@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour {
     bool jumping = false;
 
     //Character look
+    public float rotationSpeed = 12f;
     float HorizontalDirection = 0f;
     float previousDirection = 0f;
     bool dirLocked = true;
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour {
     Collider playerCollider;
     NavMeshAgent agent;
     PlayerSwordAttack playerSword;
+    ThirdPersonCamera cam;
 
     
 
@@ -55,6 +57,7 @@ public class PlayerMovement : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerCollider = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
+        cam = GetComponentInChildren<ThirdPersonCamera>();
         distanceToGround = playerCollider.bounds.extents.y;
         playerSword = GetComponentInChildren<PlayerSwordAttack>();
 
@@ -90,7 +93,7 @@ public class PlayerMovement : MonoBehaviour {
             anim.SetFloat("RunSpeed", 1);
         }
         //if(!attacking)
-            Move(forward, strafe);
+            Move(forward, strafe, cam.transform.forward, cam.transform.right);
         Animating(forward, strafe);
      
     }
@@ -129,6 +132,7 @@ public class PlayerMovement : MonoBehaviour {
     //called last, every frame
     void LateUpdate()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.C))
         {
             dirLocked = false;
@@ -140,7 +144,8 @@ public class PlayerMovement : MonoBehaviour {
         if (dirLocked)
         {
             previousDirection = HorizontalDirection;
-            HorizontalDirection = ThirdPersonCamera.xRotation;
+            //HorizontalDirection = ThirdPersonCamera.xRotation;
+            HorizontalDirection = cam.xRotation;
             if (Mathf.Abs(previousDirection-HorizontalDirection) > 10)
             {
                 Quaternion rotation = Quaternion.Euler(0, HorizontalDirection, 0);
@@ -155,6 +160,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             
         }
+        */
     }
 
     //Resets status of
@@ -226,9 +232,21 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
     //control player movement
-    void Move(float forward, float right)
+    void Move(float forward, float right, Vector3 fCam, Vector3 rCam)
     {
-        movement = (transform.forward * forward) + (transform.right * right);
+        //TODO fix vertical dependancy, and flying
+        //movement = (transform.forward * forward) + (transform.right * right);
+        movement = (fCam * forward) + (rCam * right);
+        Vector3 rotDir = new Vector3(movement.x, 0, movement.z);
+
+        if (rotDir != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.LookRotation(rotDir),
+                Time.deltaTime * rotationSpeed
+            );
+        }
         movement = movement.normalized * speed * Time.deltaTime;
         playerRigidBody.MovePosition(transform.position + movement);
     }

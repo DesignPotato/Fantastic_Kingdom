@@ -1623,8 +1623,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182322}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.106157, y: 0.16731815, z: 7.43}
+  m_LocalRotation: {x: 0, y: 0.48576355, z: 0, w: 0.8740903}
+  m_LocalPosition: {x: -11.28, y: 0.16731817, z: -20.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428852}
@@ -3167,12 +3167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a16efe93a23ea24f8bf951db7a4271a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalSensitivity: 250
   speed: 6
   gravity: 3
   jumpVelocity: 6
   rollVelocity: 150
+  attackWalkSpeed: 4
   defaultSpeed: 6
-  sprintSpeed: 24
+  sprintSpeed: 12
   CDBar: {fileID: 0}
 --- !u!114 &11409744
 MonoBehaviour:
@@ -3180,7 +3182,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182322}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5ad276d5bd176b46bbec723f4786920, type: 3}
   m_Name: 
@@ -3197,6 +3199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86922efda4e04784f961e029a8b8b68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseMenu: {fileID: 0}
   target: {fileID: 416236}
   distance: 4
   bufferup: 0.1
@@ -3205,6 +3208,7 @@ MonoBehaviour:
   ySensitivity: 120
   yMinLimit: -25
   yMaxLimit: 70
+  xRotation: 0
 --- !u!114 &11434166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3217,6 +3221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+  powerDamage: 100
   timeBetweenAttacks: 0.5
 --- !u!114 &11472268
 MonoBehaviour:

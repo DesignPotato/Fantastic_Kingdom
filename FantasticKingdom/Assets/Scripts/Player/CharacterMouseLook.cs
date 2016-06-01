@@ -23,7 +23,7 @@ public class CharacterMouseLook : MonoBehaviour {
         }
         if (locked)
         {
-            x = ThirdPersonCamera.xRotation;
+            //x = ThirdPersonCamera.xRotation;
             Quaternion rotation = Quaternion.Euler(0, x, 0);
             transform.rotation = rotation;
         }

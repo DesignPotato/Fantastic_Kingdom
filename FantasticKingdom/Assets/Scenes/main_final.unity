@@ -17846,32 +17846,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403238, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 11431498, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
-      propertyPath: PauseMenu
-      value: 
-      objectReference: {fileID: 1207965982}
     - target: {fileID: 11472268, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
       propertyPath: damageImage
       value: 
       objectReference: {fileID: 624127284}
-    - target: {fileID: 11409744, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 11472268, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
       propertyPath: HPBar
       value: 
       objectReference: {fileID: 444481029}
-    - target: {fileID: 11434166, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
-      propertyPath: powerDamage
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 11401428, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
-      propertyPath: sprintSpeed
-      value: 12
-      objectReference: {fileID: 0}
+    - target: {fileID: 11431498, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1207965982}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
   m_IsPrefabParent: 0
