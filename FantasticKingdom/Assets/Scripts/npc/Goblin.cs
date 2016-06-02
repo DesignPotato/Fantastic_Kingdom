@@ -60,7 +60,8 @@ public class Goblin : Unit {
             {
                 spawnEscape = GameObject.Find("Spawn0" + escape);
             }
-            agent.destination = spawnEscape.transform.position;
+            if(agent && agent.isOnNavMesh)
+                agent.destination = spawnEscape.transform.position;
         }
 
         if (col.gameObject.tag.Equals("SpawnPoint") && (goldStolen > 0 || GameObject.Find("GoldPile").GetComponent<GoldPile>().getGold() == 0))

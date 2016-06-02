@@ -9861,10 +9861,6 @@ Prefab:
       propertyPath: text
       value: 
       objectReference: {fileID: 591426062}
-    - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
-      propertyPath: startGold
-      value: 60
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
   m_IsPrefabParent: 0
@@ -12453,7 +12449,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 9531536, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22453198, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_SizeDelta.x
@@ -17643,7 +17639,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 9531536, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22488088, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_SizeDelta.x
