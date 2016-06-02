@@ -20,6 +20,11 @@ public class BuildManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(PauseManager.Paused){
+			canvas.enabled = false;
+			building = false;
+			return;
+		}
 		if (CheckBuilding ()) {
 			CheckSelect ();
 		}
@@ -28,11 +33,12 @@ public class BuildManager : MonoBehaviour {
 
 	bool CheckBuilding(){
 		if (Input.GetKeyDown (KeyCode.B)) {
-			building = !building;
-			if (building) {
+			if (!building) {
+				building = true;
 				canvas.enabled = true;
 				Debug.Log ("Building Mode");
 			} else {
+				building = false;
 				canvas.enabled = false;
 				Debug.Log ("Exit Building Mode");
 			}

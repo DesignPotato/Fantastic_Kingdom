@@ -71,7 +71,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 
         if (pauseManager != null)
         {
-            if (pauseManager.Paused)
+            if (PauseManager.Paused)
             {
                 //Open pause menu, and allow interaction
                 Cursor.lockState = CursorLockMode.None;

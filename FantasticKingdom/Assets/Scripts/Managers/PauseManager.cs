@@ -9,7 +9,7 @@ using UnityEditor;
 
 public class PauseManager : MonoBehaviour {
 
-    public bool Paused;
+    public static bool Paused = false;
 
     Canvas canvas;
 
