@@ -4,15 +4,19 @@ using System.Collections;
 
 public class GoldPile : MonoBehaviour {
 
-    //The amount of gold the player has
-    private int gold;
+
     //The amount of gold the player should begin with
     public int startGold = 100;
     public Text text;
+    //The amount of gold the player has
+    private int gold;
+    int maxGold;
+    int kills = 0;
 
     // Use this for initialization
     void Awake () {
         gold = startGold;
+        maxGold = gold;
 	}
 	
 	// Update is called once per frame
@@ -26,6 +30,11 @@ public class GoldPile : MonoBehaviour {
         return gold;
     }
 
+    public int getMaxGold()
+    {
+        return maxGold;
+    }
+
     public int deductGold(int amount)
     {
         int i = gold - amount >= 0 ? amount : gold;
@@ -36,5 +45,20 @@ public class GoldPile : MonoBehaviour {
     public void addGold(int amount)
     {
         gold += amount;
+        if (gold > maxGold)
+        {
+            maxGold = gold;
+        }
     }
+
+    public void addKill()
+    {
+        kills += 1;
+    }
+
+    public int getKills()
+    {
+        return kills;
+    }
+
 }

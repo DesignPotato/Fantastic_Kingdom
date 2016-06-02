@@ -1293,7 +1293,6 @@ GameObject:
   - 54: {fileID: 5449630}
   - 136: {fileID: 13623462}
   - 114: {fileID: 11472268}
-  - 114: {fileID: 11409744}
   - 82: {fileID: 8270622}
   - 114: {fileID: 11401428}
   m_Layer: 0
@@ -3176,18 +3175,7 @@ MonoBehaviour:
   defaultSpeed: 6
   sprintSpeed: 12
   CDBar: {fileID: 0}
---- !u!114 &11409744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 182322}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ad276d5bd176b46bbec723f4786920, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xSpeed: 250
+  rotationSpeed: 12
 --- !u!114 &11431498
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -129,40 +129,6 @@ public class PlayerMovement : MonoBehaviour {
         Attack (HorizontalDirection);
     }
 
-    //called last, every frame
-    void LateUpdate()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            dirLocked = false;
-        }
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            dirLocked = true;
-        }
-        if (dirLocked)
-        {
-            previousDirection = HorizontalDirection;
-            //HorizontalDirection = ThirdPersonCamera.xRotation;
-            HorizontalDirection = cam.xRotation;
-            if (Mathf.Abs(previousDirection-HorizontalDirection) > 10)
-            {
-                Quaternion rotation = Quaternion.Euler(0, HorizontalDirection, 0);
-                Quaternion from = Quaternion.Euler(0, previousDirection, 0);
-                //transform.rotation = rotation;
-                transform.rotation = Quaternion.Slerp(from, rotation, Time.time * 1.1f);
-            }
-            else
-            {
-                Quaternion rotation = Quaternion.Euler(0, HorizontalDirection, 0);
-                transform.rotation = rotation;
-            }
-            
-        }
-        */
-    }
-
     //Resets status of
     void Reset()
     {

@@ -58,7 +58,10 @@ public class EnemyHealth : MonoBehaviour {
             anim.SetTrigger("Die");
         //capsuleCollider.isTrigger = true;
         if (gold)
+        {
             gold.addGold(value);
+            gold.addKill();
+        }
         if (agent)
             agent.enabled = false;
         Destroy(gameObject, 2.5f);
