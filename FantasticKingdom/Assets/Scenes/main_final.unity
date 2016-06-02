@@ -132,15 +132,15 @@ RectTransform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 2087797835}
-  - {fileID: 1398508661}
   - {fileID: 595533171}
+  - {fileID: 1398508661}
   - {fileID: 1983110677}
   m_Father: {fileID: 1682334115}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 30, y: 27}
-  m_SizeDelta: {x: 423, y: 461}
+  m_SizeDelta: {x: 423, y: 548.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &10937733
 MonoBehaviour:
@@ -8439,7 +8439,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22446964, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22446964, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -8447,7 +8447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22446964, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -55
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 22446964, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_SizeDelta.x
@@ -8487,7 +8487,7 @@ Prefab:
       objectReference: {fileID: 1682334112}
     - target: {fileID: 11435376, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Menu
+      value: Restart
       objectReference: {fileID: 0}
     - target: {fileID: 11483562, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_Text
@@ -8499,7 +8499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 9531536, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22453198, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_SizeDelta.x
@@ -16006,7 +16006,7 @@ Canvas:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1682334111}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -17605,7 +17605,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22446964, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22446964, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -17613,7 +17613,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22446964, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 55
+      value: -55
       objectReference: {fileID: 0}
     - target: {fileID: 22446964, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_SizeDelta.x
@@ -17665,7 +17665,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 9531536, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22453198, guid: f6eabba8cec324443b503064c7be2930, type: 2}
       propertyPath: m_SizeDelta.x

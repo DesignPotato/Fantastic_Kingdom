@@ -13,7 +13,7 @@ public class StartManager : MonoBehaviour {
 	public Texture2D cursorTexture;
 
 	public void Start(){
-		Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+		//Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
 	}
 
 	public void StartGame()
