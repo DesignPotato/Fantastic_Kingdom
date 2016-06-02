@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -44,4 +45,18 @@ public class PauseManager : MonoBehaviour {
 		Application.Quit();
     #endif
     }
+
+	public void Menu()
+	{
+		Debug.Log ("Menu");
+		Time.timeScale = 1;
+		SceneManager.LoadScene (0, LoadSceneMode.Single);
+	}
+
+	public void Restart()
+	{
+		Debug.Log ("Restart");
+		Time.timeScale = 1;
+		SceneManager.LoadScene (1, LoadSceneMode.Single);
+	}
 }
