@@ -8,12 +8,25 @@ public class BuildManager : MonoBehaviour {
 	public Image icon2;
 	public Image icon3;
 	public Image icon4;
+	public Camera cam;
 
+	public GameObject wallGhost;
+	public GameObject gateGhost;
+	public GameObject towerGhost;
+	public GameObject barracksGhost;
+
+	private GameObject currentObject;
 	private bool building = false;
 	private Canvas canvas;
 
 	// Use this for initialization
 	void Start () {
+		wallGhost.SetActive(false);
+		gateGhost.SetActive(false);
+		towerGhost.SetActive(false);
+		barracksGhost.SetActive(false);
+		currentObject = wallGhost;
+
 		canvas = GetComponent<Canvas>();
 		canvas.enabled = false;
 	}
@@ -25,8 +38,10 @@ public class BuildManager : MonoBehaviour {
 			building = false;
 			return;
 		}
+
 		if (CheckBuilding ()) {
 			CheckSelect ();
+			ShowGhost ();
 		}
 
 	}
@@ -36,10 +51,13 @@ public class BuildManager : MonoBehaviour {
 			if (!building) {
 				building = true;
 				canvas.enabled = true;
+				currentObject.SetActive(true);
 				Debug.Log ("Building Mode");
+
 			} else {
 				building = false;
 				canvas.enabled = false;
+				currentObject.SetActive(false);
 				Debug.Log ("Exit Building Mode");
 			}
 		}
@@ -48,32 +66,52 @@ public class BuildManager : MonoBehaviour {
 
 	void CheckSelect(){
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
-			Debug.Log ("SELECT ONE");
+			currentObject.SetActive(false);
+			currentObject = wallGhost;
+			currentObject.SetActive(true);
 			icon1.color = new Color (100, 0, 0);
 			icon2.color = new Color (255, 255, 255);
 			icon3.color = new Color (255, 255, 255);
 			icon4.color = new Color (255, 255, 255);
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			Debug.Log ("SELECT TWO");
+			currentObject.SetActive(false);
+			currentObject = gateGhost;
+			currentObject.SetActive(true);
 			icon1.color = new Color (255, 255, 255);
 			icon2.color = new Color (100, 0, 0);
 			icon3.color = new Color (255, 255, 255);
 			icon4.color = new Color (255, 255, 255);
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha3)) {
-			Debug.Log ("SELECT THREE");
+			currentObject.SetActive(false);
+			currentObject = towerGhost;
+			currentObject.SetActive(true);
 			icon1.color = new Color (255, 255, 255);
 			icon2.color = new Color (255, 255, 255);
 			icon3.color = new Color (100, 0, 0);
 			icon4.color = new Color (255, 255, 255);
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha4)) {
-			Debug.Log ("SELECT FOUR");
+			currentObject.SetActive(false);
+			currentObject = barracksGhost;
+			currentObject.SetActive(true);
 			icon1.color = new Color (255, 255, 255);
 			icon2.color = new Color (255, 255, 255);
 			icon3.color = new Color (255, 255, 255);
 			icon4.color = new Color (100, 0, 0);
+		}
+	}
+
+	void ShowGhost(){
+		int layerMask = 1 << 9;
+		layerMask = ~layerMask;
+
+		RaycastHit hit;
+		Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0));
+		if (Physics.Raycast (ray, out hit, Mathf.Infinity, layerMask)) {
+			currentObject.transform.position = hit.point;
+			currentObject.transform.position = new Vector3(currentObject.transform.position.x, currentObject.transform.position.y + 0.5f, currentObject.transform.position.z);
 		}
 	}
 }
