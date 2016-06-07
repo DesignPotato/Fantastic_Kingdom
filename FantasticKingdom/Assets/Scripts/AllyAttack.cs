@@ -6,6 +6,7 @@ public class AllyAttack : MonoBehaviour {
     public float attackRate = 0.5f;
     public Animator anim;
     private float _nextAttack = 0.0f;
+    public int AttackDamage = 50; // This should be set by the spawner and Black smith
     
     void Awake()
     {
