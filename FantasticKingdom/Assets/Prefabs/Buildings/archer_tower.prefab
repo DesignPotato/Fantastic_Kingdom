@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.540001, y: 1.1699982, z: 1.4300003}
+  m_LocalPosition: {x: 42.35292, y: 34.1514, z: 27.442371}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 455748}
@@ -364,7 +364,7 @@ MonoBehaviour:
   FireInterval: 2
   FireRadius0: 1
   FireRadius1: 40
-  FireRadius2: 80
+  FireRadius2: 60
   EnemiesLayer:
     serializedVersion: 2
     m_Bits: 256
