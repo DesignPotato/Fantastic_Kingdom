@@ -4,10 +4,10 @@ using System.Collections;
 
 public class BuildManager : MonoBehaviour {
 
-	public Image icon1;
-	public Image icon2;
-	public Image icon3;
-	public Image icon4;
+	public RawImage icon1;
+	public RawImage icon2;
+	public RawImage icon3;
+	public RawImage icon4;
 	public Text icon1Cost;
 	public Text icon2Cost;
 	public Text icon3Cost;
@@ -42,10 +42,10 @@ public class BuildManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		icon1Cost.text = "" + wallCost;
-		icon2Cost.text = "" + gateCost;
-		icon3Cost.text = "" + towerCost;
-		icon4Cost.text = "" + barracksCost;
+		icon1Cost.text = wallCost + "G";
+		icon2Cost.text = gateCost + "G";
+		icon3Cost.text = towerCost + "G";
+		icon4Cost.text = barracksCost + "G";
 		// Init mats
 		correctBuildMat = new Material(Shader.Find("Legacy Shaders/Diffuse"));
 		correctBuildMat.color = Color.green;
