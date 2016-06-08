@@ -18,15 +18,45 @@ public class BuildManager : MonoBehaviour {
 	private GameObject currentObject;
 	private bool building = false;
 	private Canvas canvas;
+	// Create mat
+	private Material correctBuildMat;
+	private Material failBuildMat;
 
 	// Use this for initialization
 	void Start () {
-		wallGhost.SetActive(false);
-		gateGhost.SetActive(false);
-		towerGhost.SetActive(false);
-		barracksGhost.SetActive(false);
-		currentObject = wallGhost;
+		// Init mats
+		correctBuildMat = new Material(Shader.Find("Legacy Shaders/Diffuse"));
+		correctBuildMat.color = Color.green;
+		failBuildMat = new Material(Shader.Find("Legacy Shaders/Diffuse"));
+		failBuildMat.color = Color.red;
 
+		// Apply mats to all objects and disable physics
+		wallGhost.SetActive(false);
+		BoxCollider[] bcs = wallGhost.GetComponentsInChildren<BoxCollider>();
+		foreach (BoxCollider bc in bcs) {
+			bc.isTrigger = true;
+		}
+
+		gateGhost.SetActive(false);
+		bcs = gateGhost.GetComponentsInChildren<BoxCollider>();
+		foreach (BoxCollider bc in bcs) {
+			bc.isTrigger = true;
+		}
+
+		towerGhost.SetActive(false);
+		bcs = towerGhost.GetComponentsInChildren<BoxCollider>();
+		foreach (BoxCollider bc in bcs) {
+			bc.isTrigger = true;
+		}
+
+		barracksGhost.SetActive(false);
+		bcs = barracksGhost.GetComponentsInChildren<BoxCollider>();
+		foreach (BoxCollider bc in bcs) {
+			bc.isTrigger = true;
+		}
+
+
+		currentObject = wallGhost;
 		canvas = GetComponent<Canvas>();
 		canvas.enabled = false;
 	}
@@ -107,10 +137,62 @@ public class BuildManager : MonoBehaviour {
 		int layerMask = 1 << 9;
 		layerMask = ~layerMask;
 
+		// Set color
+		GhostBuilding gb = currentObject.GetComponent<GhostBuilding>();
+		if (gb.IsTriggered()) {
+			wallGhost.GetComponent<Renderer>().material = failBuildMat;
+
+			gateGhost.GetComponent<Renderer>().material = failBuildMat;
+
+			Renderer[] rends = towerGhost.GetComponentsInChildren<Renderer>();
+			foreach (Renderer rend in rends) {
+				Material[] mats = rend.materials;
+				for (int i = 0; i < mats.Length; i++) {
+					mats [i] = failBuildMat;
+				}
+				rend.materials = mats;
+			}
+
+			rends = barracksGhost.GetComponentsInChildren<Renderer>();
+			foreach (Renderer rend in rends) {
+				Material[] mats = rend.materials;
+				for (int i = 0; i < mats.Length; i++) {
+					mats [i] = failBuildMat;
+				}
+				rend.materials = mats;
+			}
+		} else {
+			wallGhost.GetComponent<Renderer>().material = correctBuildMat;
+
+			gateGhost.GetComponent<Renderer>().material = correctBuildMat;
+
+			Renderer[] rends = towerGhost.GetComponentsInChildren<Renderer>();
+			foreach (Renderer rend in rends) {
+				Material[] mats = rend.materials;
+				for (int i = 0; i < mats.Length; i++) {
+					mats [i] = correctBuildMat;
+				}
+				rend.materials = mats;
+			}
+
+			rends = barracksGhost.GetComponentsInChildren<Renderer>();
+			foreach (Renderer rend in rends) {
+				Material[] mats = rend.materials;
+				for (int i = 0; i < mats.Length; i++) {
+					mats [i] = correctBuildMat;
+				}
+				rend.materials = mats;
+			}
+		}
+
 		RaycastHit hit;
 		Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0));
 		if (Physics.Raycast (ray, out hit, Mathf.Infinity, layerMask)) {
-			currentObject.transform.position = hit.point;
+			if (currentObject == barracksGhost) {
+				currentObject.transform.position = new Vector3 (hit.point.x, hit.point.y - 0.5f, hit.point.z);
+			} else {
+				currentObject.transform.position = hit.point;
+			}
 			currentObject.transform.position = new Vector3(currentObject.transform.position.x, currentObject.transform.position.y + 0.5f, currentObject.transform.position.z);
 		}
 	}
