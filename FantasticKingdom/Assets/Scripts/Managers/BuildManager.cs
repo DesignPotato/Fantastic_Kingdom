@@ -110,13 +110,11 @@ public class BuildManager : MonoBehaviour {
 				building = true;
 				canvas.enabled = true;
 				currentObject.SetActive(true);
-				Debug.Log ("Building Mode");
 
 			} else {
 				building = false;
 				canvas.enabled = false;
 				currentObject.SetActive(false);
-				Debug.Log ("Exit Building Mode");
 			}
 		}
 		return building;
@@ -171,7 +169,8 @@ public class BuildManager : MonoBehaviour {
 	}
 
 	void Build(){
-		if (Input.GetMouseButtonDown(0)) {
+		GhostBuilding gb = currentObject.GetComponent<GhostBuilding>();
+		if (!gb.IsTriggered() && Input.GetMouseButtonDown(0)) {
 			if (currentObject == wallGhost) {
 				if (goldPile.getGold () > wallCost) {
 					goldPile.deductGold (wallCost);

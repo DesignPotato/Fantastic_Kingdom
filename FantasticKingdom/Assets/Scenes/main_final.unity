@@ -9888,7 +9888,7 @@ Prefab:
       objectReference: {fileID: 591426062}
     - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
       propertyPath: startGold
-      value: 3000
+      value: 101
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
