@@ -15,6 +15,8 @@ public class BuildManager : MonoBehaviour {
 	public GameObject towerGhost;
 	public GameObject barracksGhost;
 
+	public float rotateSpeed = 3;
+
 	private GameObject currentObject;
 	private bool building = false;
 	private Canvas canvas;
@@ -70,7 +72,8 @@ public class BuildManager : MonoBehaviour {
 		}
 
 		if (CheckBuilding ()) {
-			CheckSelect ();
+			Select ();
+			Rotate ();
 			ShowGhost ();
 		}
 
@@ -94,7 +97,7 @@ public class BuildManager : MonoBehaviour {
 		return building;
 	}
 
-	void CheckSelect(){
+	void Select(){
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			currentObject.SetActive(false);
 			currentObject = wallGhost;
@@ -130,6 +133,15 @@ public class BuildManager : MonoBehaviour {
 			icon2.color = new Color (255, 255, 255);
 			icon3.color = new Color (255, 255, 255);
 			icon4.color = new Color (100, 0, 0);
+		}
+	}
+
+	void Rotate(){
+		if (Input.GetKey(KeyCode.E)) {
+			currentObject.transform.Rotate (0, -rotateSpeed, 0);
+		}
+		if(Input.GetKey(KeyCode.Q)) {
+			currentObject.transform.Rotate (0, rotateSpeed, 0);
 		}
 	}
 
