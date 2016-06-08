@@ -213,7 +213,7 @@ public class BuildManager : MonoBehaviour {
 
 		// Set color
 		GhostBuilding gb = currentObject.GetComponent<GhostBuilding>();
-		if (gb.IsTriggered()) {
+		if (gb.IsTriggered() || GetCost(currentObject) > goldPile.getGold ()) {
 			wallGhost.GetComponent<Renderer>().material = failBuildMat;
 
 			gateGhost.GetComponent<Renderer>().material = failBuildMat;
@@ -269,5 +269,18 @@ public class BuildManager : MonoBehaviour {
 			}
 			currentObject.transform.position = new Vector3(currentObject.transform.position.x, currentObject.transform.position.y + 0.5f, currentObject.transform.position.z);
 		}
+	}
+
+	int GetCost(GameObject building){
+		if (building.Equals (wallGhost)) {
+			return wallCost;
+		} else if (building.Equals (gateGhost)) {
+			return gateCost;
+		} else if (building.Equals (towerGhost)) {
+			return towerCost;
+		} else if (building.Equals (barracksGhost)) {
+			return barracksCost;
+		} else
+			return 0;
 	}
 }
