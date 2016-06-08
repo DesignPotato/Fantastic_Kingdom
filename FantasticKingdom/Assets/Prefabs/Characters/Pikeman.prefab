@@ -1036,7 +1036,7 @@ GameObject:
   - 136: {fileID: 13669662}
   - 195: {fileID: 19501088}
   - 54: {fileID: 5422996}
-  - 114: {fileID: 11495148}
+  - 114: {fileID: 11488770}
   m_Layer: 0
   m_Name: Pikeman
   m_TagString: Untagged
@@ -3005,7 +3005,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRate: 0.5
   anim: {fileID: 0}
---- !u!114 &11495148
+  AttackDamage: 50
+--- !u!114 &11488770
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3016,14 +3017,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2cb6fcf12b9114fa6af45eb6e28f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  goldPile: {fileID: 0}
-  potentialTargets: []
+  speed: 0
+  goldPile: {fileID: 179384, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
+  PotentialTargets: []
   enemiesLayer:
     serializedVersion: 2
     m_Bits: 256
   target: {fileID: 0}
-  attackRangeTier3: 20
+  attackRangeTier2: 20
+  attackRangeTier3: 30
 --- !u!136 &13638484
 CapsuleCollider:
   m_ObjectHideFlags: 1

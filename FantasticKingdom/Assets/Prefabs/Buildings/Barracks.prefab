@@ -44,6 +44,7 @@ GameObject:
   - 4: {fileID: 457878}
   - 95: {fileID: 9570956}
   - 65: {fileID: 6573150}
+  - 114: {fileID: 11409772}
   m_Layer: 0
   m_Name: Barracks
   m_TagString: Untagged
@@ -187,6 +188,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11409772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7905a49884b654e954836d2773d539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PikemanPrefab: {fileID: 171582, guid: 67df8439e6d185b4ca5969cee1767dd4, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
