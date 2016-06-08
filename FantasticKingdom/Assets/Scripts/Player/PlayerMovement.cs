@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded())
         {
             if(currentCD == 0)
-                Roll(HorizontalDirection);
+                Roll();
         }
         Attack (HorizontalDirection);
     }
@@ -227,27 +227,16 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     //Player carry out roll action
-    void Roll(float dir)
+    void Roll()
     {
         Vector3 direction;
 
-        float forward = Input.GetAxisRaw("Vertical");
-        float strafe = Input.GetAxisRaw("Horizontal");
-
-        if (forward == 0 && strafe == 0)
-        {
-            direction = (transform.forward * dir);
-            direction = direction.normalized * speed * Time.deltaTime;
-        }
-        else
-        {
-            direction = (transform.forward * forward) + (transform.right * strafe);
-            direction = direction.normalized * speed * Time.deltaTime;
-        }   
+        direction = transform.forward * speed * Time.deltaTime;
         dirLocked = false;
         attacking = true;
         maxCD = ROLL_CD;
         currentCD = ROLL_CD;
+        ActionAnim(Action.ROLL);
         playerRigidBody.AddForce(direction * rollVelocity, ForceMode.VelocityChange);
 
     }
