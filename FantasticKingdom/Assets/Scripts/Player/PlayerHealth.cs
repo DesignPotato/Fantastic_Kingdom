@@ -85,11 +85,11 @@ public class PlayerHealth : MonoBehaviour {
     //Updates the UI component health bar
     public void UpdateHealthBar()
     {
-        float HPRatio = 270 * currentHealth / startingHealth;
-        HPBar.rectTransform.sizeDelta = new Vector2(HPRatio, 32);
+        float HPRatio = 224 * currentHealth / startingHealth;
+        HPBar.rectTransform.sizeDelta = new Vector2(HPRatio, 26);
         //HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 - 81, 0.5f, 0);
         //HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 + 2, -13, 0);
-        HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 + 116, -57, 0);
+		HPBar.rectTransform.localPosition = new Vector3(HPRatio / 2 + 174.5f, -92.5f, 0);
     }
 
     //----------------------------------------------------------------------------||
