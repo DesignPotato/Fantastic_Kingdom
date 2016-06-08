@@ -202,6 +202,8 @@ public class PlayerMovement : MonoBehaviour {
     {
         //TODO fix vertical dependancy, and flying
         //movement = (transform.forward * forward) + (transform.right * right);
+        fCam.y = 0;
+        fCam.Normalize();
         movement = (fCam * forward) + (rCam * right);
         Vector3 rotDir = new Vector3(movement.x, 0, movement.z);
 

@@ -42,8 +42,13 @@ public class EnemyHealth : MonoBehaviour {
 
         enemyAudio.Play();
         currentHealth -= amount;
-        //if(rb)
-            //rb.AddForce(new Vector3(0, 10f, 0), ForceMode.VelocityChange);
+        if (rb && agent)
+        {
+            agent.enabled = false;
+            rb.drag = 1;
+            rb.AddForce(new Vector3(0, 6f, 0), ForceMode.VelocityChange);
+            Debug.Log("applied force");
+        }
         if (currentHealth <= 0)
         {
             Death();
@@ -65,5 +70,19 @@ public class EnemyHealth : MonoBehaviour {
         if (agent)
             agent.enabled = false;
         Destroy(gameObject, 2.5f);
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (agent.enabled == false)
+        {
+            if (other.gameObject.tag == "Ground")
+            {
+                rb.drag = Mathf.Infinity;
+                agent.enabled = true;   
+                Debug.Log("enabled agent");
+            }
+        }
+        
     }
 }
