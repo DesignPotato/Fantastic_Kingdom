@@ -8,12 +8,30 @@ public class BuildManager : MonoBehaviour {
 	public Image icon2;
 	public Image icon3;
 	public Image icon4;
+	public Text icon1Cost;
+	public Text icon2Cost;
+	public Text icon3Cost;
+	public Text icon4Cost;
+
 	public Camera cam;
+
+	public int wallCost;
+	public int gateCost;
+	public int towerCost;
+	public int barracksCost;
 
 	public GameObject wallGhost;
 	public GameObject gateGhost;
 	public GameObject towerGhost;
 	public GameObject barracksGhost;
+	public GameObject wallGhostPrefab;
+	public GameObject gateGhostPrefab;
+	public GameObject towerGhostPrefab;
+	public GameObject barracksGhostPrefab;
+
+	public GoldPile goldPile;
+
+	public float rotateSpeed = 3;
 
 	private GameObject currentObject;
 	private bool building = false;
@@ -24,6 +42,10 @@ public class BuildManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		icon1Cost.text = "" + wallCost;
+		icon2Cost.text = "" + gateCost;
+		icon3Cost.text = "" + towerCost;
+		icon4Cost.text = "" + barracksCost;
 		// Init mats
 		correctBuildMat = new Material(Shader.Find("Legacy Shaders/Diffuse"));
 		correctBuildMat.color = Color.green;
@@ -66,12 +88,18 @@ public class BuildManager : MonoBehaviour {
 		if(PauseManager.Paused){
 			canvas.enabled = false;
 			building = false;
+			wallGhost.SetActive(false);
+			gateGhost.SetActive(false);
+			towerGhost.SetActive(false);
+			barracksGhost.SetActive(false);
 			return;
 		}
 
 		if (CheckBuilding ()) {
-			CheckSelect ();
+			Select ();
 			ShowGhost ();
+			Rotate ();
+			Build ();
 		}
 
 	}
@@ -82,19 +110,17 @@ public class BuildManager : MonoBehaviour {
 				building = true;
 				canvas.enabled = true;
 				currentObject.SetActive(true);
-				Debug.Log ("Building Mode");
 
 			} else {
 				building = false;
 				canvas.enabled = false;
 				currentObject.SetActive(false);
-				Debug.Log ("Exit Building Mode");
 			}
 		}
 		return building;
 	}
 
-	void CheckSelect(){
+	void Select(){
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			currentObject.SetActive(false);
 			currentObject = wallGhost;
@@ -130,6 +156,54 @@ public class BuildManager : MonoBehaviour {
 			icon2.color = new Color (255, 255, 255);
 			icon3.color = new Color (255, 255, 255);
 			icon4.color = new Color (100, 0, 0);
+		}
+	}
+
+	void Rotate(){
+		if (Input.GetKey(KeyCode.E)) {
+			currentObject.transform.Rotate (0, -rotateSpeed, 0);
+		}
+		if(Input.GetKey(KeyCode.Q)) {
+			currentObject.transform.Rotate (0, rotateSpeed, 0);
+		}
+	}
+
+	void Build(){
+		GhostBuilding gb = currentObject.GetComponent<GhostBuilding>();
+		if (!gb.IsTriggered() && Input.GetMouseButtonDown(0)) {
+			if (currentObject == wallGhost) {
+				if (goldPile.getGold () > wallCost) {
+					goldPile.deductGold (wallCost);
+					GameObject wall = (GameObject)Instantiate (wallGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				} else {
+					// NOT ENOUGH MINERALS
+					Debug.Log("NOT ENOUGH MINERALS: " + goldPile.getGold () + ", Need: " + (wallCost + 1));
+				}
+			} else if (currentObject == gateGhost) {
+				if (goldPile.getGold () > gateCost) {
+					goldPile.deductGold (gateCost);
+					GameObject gate = (GameObject)Instantiate (gateGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				} else {
+					// NOT ENOUGH MINERALS
+					Debug.Log("NOT ENOUGH MINERALS: " + goldPile.getGold () + ", Need: " + (gateCost + 1));
+				}
+			} else if (currentObject == towerGhost) {
+				if (goldPile.getGold () > towerCost) {
+					goldPile.deductGold (towerCost);
+					GameObject tower = (GameObject)Instantiate (towerGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				} else {
+					// NOT ENOUGH MINERALS
+					Debug.Log("NOT ENOUGH MINERALS: " + goldPile.getGold () + ", Need: " + (towerCost + 1));
+				}
+			} else if (currentObject == barracksGhost) {
+				if (goldPile.getGold () > barracksCost) {
+					goldPile.deductGold (barracksCost);
+					GameObject barracks = (GameObject)Instantiate (barracksGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				} else {
+					// NOT ENOUGH MINERALS
+					Debug.Log("NOT ENOUGH MINERALS: " + goldPile.getGold () + ", Need: " + (barracksCost + 1));
+				}
+			}
 		}
 	}
 
