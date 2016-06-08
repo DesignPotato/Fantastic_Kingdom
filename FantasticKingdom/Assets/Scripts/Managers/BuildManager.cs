@@ -8,17 +8,28 @@ public class BuildManager : MonoBehaviour {
 	public Image icon2;
 	public Image icon3;
 	public Image icon4;
+	public Text icon1Cost;
+	public Text icon2Cost;
+	public Text icon3Cost;
+	public Text icon4Cost;
+
 	public Camera cam;
+
+	public int wallCost;
+	public int gateCost;
+	public int towerCost;
+	public int barracksCost;
 
 	public GameObject wallGhost;
 	public GameObject gateGhost;
 	public GameObject towerGhost;
 	public GameObject barracksGhost;
-
 	public GameObject wallGhostPrefab;
 	public GameObject gateGhostPrefab;
 	public GameObject towerGhostPrefab;
 	public GameObject barracksGhostPrefab;
+
+	public GoldPile goldPile;
 
 	public float rotateSpeed = 3;
 
@@ -31,6 +42,10 @@ public class BuildManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		icon1Cost.text = "" + wallCost;
+		icon2Cost.text = "" + gateCost;
+		icon3Cost.text = "" + towerCost;
+		icon4Cost.text = "" + barracksCost;
 		// Init mats
 		correctBuildMat = new Material(Shader.Find("Legacy Shaders/Diffuse"));
 		correctBuildMat.color = Color.green;
@@ -73,6 +88,10 @@ public class BuildManager : MonoBehaviour {
 		if(PauseManager.Paused){
 			canvas.enabled = false;
 			building = false;
+			wallGhost.SetActive(false);
+			gateGhost.SetActive(false);
+			towerGhost.SetActive(false);
+			barracksGhost.SetActive(false);
 			return;
 		}
 
@@ -80,7 +99,7 @@ public class BuildManager : MonoBehaviour {
 			Select ();
 			ShowGhost ();
 			Rotate ();
-			Place ();
+			Build ();
 		}
 
 	}
@@ -151,16 +170,40 @@ public class BuildManager : MonoBehaviour {
 		}
 	}
 
-	void Place(){
+	void Build(){
 		if (Input.GetMouseButtonDown(0)) {
 			if (currentObject == wallGhost) {
-				GameObject wall = (GameObject)Instantiate (wallGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				if (goldPile.getGold () > wallCost) {
+					goldPile.deductGold (wallCost);
+					GameObject wall = (GameObject)Instantiate (wallGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				} else {
+					// NOT ENOUGH MINERALS
+					Debug.Log("NOT ENOUGH MINERALS: " + goldPile.getGold () + ", Need: " + (wallCost + 1));
+				}
 			} else if (currentObject == gateGhost) {
-				GameObject gate = (GameObject)Instantiate (gateGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				if (goldPile.getGold () > gateCost) {
+					goldPile.deductGold (gateCost);
+					GameObject gate = (GameObject)Instantiate (gateGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				} else {
+					// NOT ENOUGH MINERALS
+					Debug.Log("NOT ENOUGH MINERALS: " + goldPile.getGold () + ", Need: " + (gateCost + 1));
+				}
 			} else if (currentObject == towerGhost) {
-				GameObject tower = (GameObject)Instantiate (towerGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				if (goldPile.getGold () > towerCost) {
+					goldPile.deductGold (towerCost);
+					GameObject tower = (GameObject)Instantiate (towerGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				} else {
+					// NOT ENOUGH MINERALS
+					Debug.Log("NOT ENOUGH MINERALS: " + goldPile.getGold () + ", Need: " + (towerCost + 1));
+				}
 			} else if (currentObject == barracksGhost) {
-				GameObject barracks = (GameObject)Instantiate (barracksGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				if (goldPile.getGold () > barracksCost) {
+					goldPile.deductGold (barracksCost);
+					GameObject barracks = (GameObject)Instantiate (barracksGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+				} else {
+					// NOT ENOUGH MINERALS
+					Debug.Log("NOT ENOUGH MINERALS: " + goldPile.getGold () + ", Need: " + (barracksCost + 1));
+				}
 			}
 		}
 	}

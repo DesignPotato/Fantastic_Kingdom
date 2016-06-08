@@ -4744,13 +4744,13 @@ RectTransform:
   m_GameObject: {fileID: 333312290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1615080505}
   - {fileID: 1809659155}
   - {fileID: 1189235702}
-  m_Father: {fileID: 955392899}
-  m_RootOrder: 4
+  m_Father: {fileID: 581857427}
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -7402,6 +7402,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 0b5e1009bbe3144438668bf3acc15dd5, type: 3}
   m_PrefabInternal: {fileID: 534677089}
+--- !u!114 &535060830 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11431698, guid: 44a540d430d1da84bae4a0ce7c1ba6c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 581857426}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &538043884 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: f78e40d02c4fe4409b7104f23ef88e75, type: 3}
@@ -9880,6 +9886,10 @@ Prefab:
       propertyPath: text
       value: 
       objectReference: {fileID: 591426062}
+    - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
+      propertyPath: startGold
+      value: 3000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
   m_IsPrefabParent: 0
@@ -13261,7 +13271,6 @@ RectTransform:
   - {fileID: 2129065035}
   - {fileID: 1723047361}
   - {fileID: 581857427}
-  - {fileID: 333312291}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
@@ -13284,7 +13293,15 @@ MonoBehaviour:
   icon2: {fileID: 2129065036}
   icon3: {fileID: 1723047362}
   icon4: {fileID: 581857428}
+  icon1Cost: {fileID: 2122325281}
+  icon2Cost: {fileID: 1054724527}
+  icon3Cost: {fileID: 1369291396}
+  icon4Cost: {fileID: 535060830}
   cam: {fileID: 1395569836}
+  wallCost: 100
+  gateCost: 150
+  towerCost: 300
+  barracksCost: 500
   wallGhost: {fileID: 692862912}
   gateGhost: {fileID: 1710304237}
   towerGhost: {fileID: 1317145187}
@@ -13293,6 +13310,7 @@ MonoBehaviour:
   gateGhostPrefab: {fileID: 190562, guid: 3e3196c49681d7b4fae8d9e0b31764c9, type: 2}
   towerGhostPrefab: {fileID: 104854, guid: 50011da6211fffe4a833733ae83f34c0, type: 2}
   barracksGhostPrefab: {fileID: 123874, guid: 3d9abde592373a44c891cecebf3eb2ba, type: 2}
+  goldPile: {fileID: 394087341}
   rotateSpeed: 3
 --- !u!1 &956494249 stripped
 GameObject:
@@ -14411,6 +14429,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48bc0dff1b5e12e4a9120a3a14537fd9, type: 3}
   m_IsPrefabParent: 0
+--- !u!114 &1054724527 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11431698, guid: 44a540d430d1da84bae4a0ce7c1ba6c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 2129065034}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &1059544218
 Prefab:
   m_ObjectHideFlags: 0
@@ -15249,7 +15273,8 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11431978, guid: 50011da6211fffe4a833733ae83f34c0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 50011da6211fffe4a833733ae83f34c0, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1120838665 stripped
@@ -17901,6 +17926,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e70013925d2b643a28d3248d801a2221, type: 3}
   m_IsPrefabParent: 0
+--- !u!114 &1369291396 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11431698, guid: 44a540d430d1da84bae4a0ce7c1ba6c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1723047360}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!4 &1374775755 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e70013925d2b643a28d3248d801a2221, type: 3}
@@ -27254,6 +27285,12 @@ CapsuleCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f78e40d02c4fe4409b7104f23ef88e75, type: 3}
   m_PrefabInternal: {fileID: 2083704916}
+--- !u!114 &2122325281 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11431698, guid: 44a540d430d1da84bae4a0ce7c1ba6c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1960981441}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &2125449389
 GameObject:
   m_ObjectHideFlags: 0

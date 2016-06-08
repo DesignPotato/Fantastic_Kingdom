@@ -6,16 +6,16 @@ public class GoldPile : MonoBehaviour {
 
 
     //The amount of gold the player should begin with
-    public int startGold = 100;
+    public int startGold = 101;
     public Text text;
     //The amount of gold the player has
-    private int gold;
+	private int gold;
     int maxGold;
     int kills = 0;
 
     // Use this for initialization
     void Awake () {
-        gold = startGold;
+		gold = startGold;
         maxGold = gold;
 	}
 	
