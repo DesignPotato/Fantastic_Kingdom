@@ -4,14 +4,17 @@ using System.Collections;
 
 public class BuildManager : MonoBehaviour {
 
-	public RawImage icon1;
-	public RawImage icon2;
-	public RawImage icon3;
-	public RawImage icon4;
+	public Text icon1Title;
+	public Text icon2Title;
+	public Text icon3Title;
+	public Text icon4Title;
 	public Text icon1Cost;
 	public Text icon2Cost;
 	public Text icon3Cost;
 	public Text icon4Cost;
+
+	public Color normalColor;
+	public Color normalColor2;
 
 	public Camera cam;
 
@@ -34,6 +37,7 @@ public class BuildManager : MonoBehaviour {
 	public float rotateSpeed = 3;
 
 	private GameObject currentObject;
+	public Animator ani;
 	private bool building = false;
 	private Canvas canvas;
 	// Create mat
@@ -46,6 +50,7 @@ public class BuildManager : MonoBehaviour {
 		icon2Cost.text = gateCost + "G";
 		icon3Cost.text = towerCost + "G";
 		icon4Cost.text = barracksCost + "G";
+		icon1Title.color = normalColor2;
 		// Init mats
 		correctBuildMat = new Material(Shader.Find("Legacy Shaders/Diffuse"));
 		correctBuildMat.color = Color.green;
@@ -80,13 +85,14 @@ public class BuildManager : MonoBehaviour {
 
 		currentObject = wallGhost;
 		canvas = GetComponent<Canvas>();
-		canvas.enabled = false;
+		ani = GetComponent<Animator>();
+		//canvas.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(PauseManager.Paused){
-			canvas.enabled = false;
+			//canvas.enabled = false;
 			building = false;
 			wallGhost.SetActive(false);
 			gateGhost.SetActive(false);
@@ -108,13 +114,14 @@ public class BuildManager : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.B)) {
 			if (!building) {
 				building = true;
-				canvas.enabled = true;
+				//canvas.enabled = true;
 				currentObject.SetActive(true);
-
+				ani.SetBool ("GoOut", true);
 			} else {
 				building = false;
-				canvas.enabled = false;
+				//canvas.enabled = false;
 				currentObject.SetActive(false);
+				ani.SetBool ("GoOut", false);
 			}
 		}
 		return building;
@@ -125,37 +132,37 @@ public class BuildManager : MonoBehaviour {
 			currentObject.SetActive(false);
 			currentObject = wallGhost;
 			currentObject.SetActive(true);
-			icon1.color = new Color (100, 0, 0);
-			icon2.color = new Color (255, 255, 255);
-			icon3.color = new Color (255, 255, 255);
-			icon4.color = new Color (255, 255, 255);
+			icon1Title.color = normalColor2;
+			icon2Title.color = normalColor;
+			icon3Title.color = normalColor;
+			icon4Title.color = normalColor;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha2)) {
 			currentObject.SetActive(false);
 			currentObject = gateGhost;
 			currentObject.SetActive(true);
-			icon1.color = new Color (255, 255, 255);
-			icon2.color = new Color (100, 0, 0);
-			icon3.color = new Color (255, 255, 255);
-			icon4.color = new Color (255, 255, 255);
+			icon1Title.color = normalColor;
+			icon2Title.color = normalColor2;
+			icon3Title.color = normalColor;
+			icon4Title.color = normalColor;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha3)) {
 			currentObject.SetActive(false);
 			currentObject = towerGhost;
 			currentObject.SetActive(true);
-			icon1.color = new Color (255, 255, 255);
-			icon2.color = new Color (255, 255, 255);
-			icon3.color = new Color (100, 0, 0);
-			icon4.color = new Color (255, 255, 255);
+			icon1Title.color = normalColor;
+			icon2Title.color = normalColor;
+			icon3Title.color = normalColor2;
+			icon4Title.color = normalColor;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha4)) {
 			currentObject.SetActive(false);
 			currentObject = barracksGhost;
 			currentObject.SetActive(true);
-			icon1.color = new Color (255, 255, 255);
-			icon2.color = new Color (255, 255, 255);
-			icon3.color = new Color (255, 255, 255);
-			icon4.color = new Color (100, 0, 0);
+			icon1Title.color = normalColor;
+			icon2Title.color = normalColor;
+			icon3Title.color = normalColor;
+			icon4Title.color = normalColor2;
 		}
 	}
 
