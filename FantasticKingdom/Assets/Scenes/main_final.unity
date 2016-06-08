@@ -13289,6 +13289,11 @@ MonoBehaviour:
   gateGhost: {fileID: 1710304237}
   towerGhost: {fileID: 1317145187}
   barracksGhost: {fileID: 1001909888}
+  wallGhostPrefab: {fileID: 191098, guid: c5cabe1e29770334aab4542990f03b75, type: 2}
+  gateGhostPrefab: {fileID: 190562, guid: 3e3196c49681d7b4fae8d9e0b31764c9, type: 2}
+  towerGhostPrefab: {fileID: 104854, guid: 50011da6211fffe4a833733ae83f34c0, type: 2}
+  barracksGhostPrefab: {fileID: 123874, guid: 3d9abde592373a44c891cecebf3eb2ba, type: 2}
+  rotateSpeed: 3
 --- !u!1 &956494249 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100010, guid: b192f84d79ca14bc89d9752ce29cf027, type: 3}

@@ -15,6 +15,11 @@ public class BuildManager : MonoBehaviour {
 	public GameObject towerGhost;
 	public GameObject barracksGhost;
 
+	public GameObject wallGhostPrefab;
+	public GameObject gateGhostPrefab;
+	public GameObject towerGhostPrefab;
+	public GameObject barracksGhostPrefab;
+
 	public float rotateSpeed = 3;
 
 	private GameObject currentObject;
@@ -73,8 +78,9 @@ public class BuildManager : MonoBehaviour {
 
 		if (CheckBuilding ()) {
 			Select ();
-			Rotate ();
 			ShowGhost ();
+			Rotate ();
+			Place ();
 		}
 
 	}
@@ -142,6 +148,20 @@ public class BuildManager : MonoBehaviour {
 		}
 		if(Input.GetKey(KeyCode.Q)) {
 			currentObject.transform.Rotate (0, rotateSpeed, 0);
+		}
+	}
+
+	void Place(){
+		if (Input.GetMouseButtonDown(0)) {
+			if (currentObject == wallGhost) {
+				GameObject wall = (GameObject)Instantiate (wallGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+			} else if (currentObject == gateGhost) {
+				GameObject gate = (GameObject)Instantiate (gateGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+			} else if (currentObject == towerGhost) {
+				GameObject tower = (GameObject)Instantiate (towerGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+			} else if (currentObject == barracksGhost) {
+				GameObject barracks = (GameObject)Instantiate (barracksGhostPrefab, currentObject.transform.position, currentObject.transform.rotation);
+			}
 		}
 	}
 
