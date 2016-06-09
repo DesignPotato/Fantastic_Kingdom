@@ -4248,7 +4248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e199a5a9cefce44a3ebd5364bd9143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 4
   GoldPile: {fileID: 0}
   numberOfAttackers: 0
 --- !u!135 &13548348
