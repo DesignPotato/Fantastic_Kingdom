@@ -12,15 +12,26 @@ public class GoldPile : MonoBehaviour {
 	private int gold;
     int maxGold;
     int kills = 0;
+    //Interest
+    public float interestRate = 0.01f; // 1% every 30 sec
+    public float interestPeriod = 5.0f;// In seconds
+    private float _nextInterestDue;
 
     // Use this for initialization
     void Awake () {
 		gold = startGold;
         maxGold = gold;
+        _nextInterestDue = Time.time + interestPeriod;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (_nextInterestDue < Time.time)
+        {
+            addGold((int)(gold * interestRate));
+            _nextInterestDue += interestPeriod;
+        }
+
         if(text)
             text.text = "" + gold;
     }

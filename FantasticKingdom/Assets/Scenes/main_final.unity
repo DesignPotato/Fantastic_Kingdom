@@ -10104,6 +10104,14 @@ Prefab:
       propertyPath: startGold
       value: 101
       objectReference: {fileID: 0}
+    - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
+      propertyPath: interestPeriod
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
+      propertyPath: interestRate
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
   m_IsPrefabParent: 0
@@ -13710,7 +13718,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -16897,7 +16904,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -18442,7 +18448,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
