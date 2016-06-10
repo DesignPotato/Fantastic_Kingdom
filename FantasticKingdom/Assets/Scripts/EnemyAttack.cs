@@ -92,6 +92,8 @@ public class EnemyAttack : MonoBehaviour {
             }
         }
         if (anim)
+        {
             anim.SetTrigger("Attacking");
+        }
     }
 }
