@@ -37,7 +37,7 @@ public class AllyHealth : MonoBehaviour {
         currentHealth -= amount;
         if (rb && agent)
         {
-            //agent.enabled = false;
+            agent.enabled = false;
             rb.drag = 1;
             rb.AddForce(new Vector3(0, 6f, 0), ForceMode.VelocityChange);
         }

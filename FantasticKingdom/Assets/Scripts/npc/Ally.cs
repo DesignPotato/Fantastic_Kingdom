@@ -92,9 +92,11 @@ public class Ally : Unit {
             var current = this.GetComponent<Transform>().rotation;
             transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * 2);
 
-            if(agent && agent.isOnNavMesh && agent.enabled)
+            if (agent && agent.isOnNavMesh && agent.enabled)
+            {
                 agent.destination = Target.transform.position;
                 agent.Resume();
+            }
         }
         else //if no target stay where it is.
         {

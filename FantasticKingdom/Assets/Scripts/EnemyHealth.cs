@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour {
     Animator anim;
     GoldPile gold;
     NavMeshAgent agent;
+    Vector3 agentDest;
 
     //CapsuleCollider capsuleCollider;
     bool isDead;
@@ -45,6 +46,7 @@ public class EnemyHealth : MonoBehaviour {
         currentHealth -= amount;
         if (rb && agent)
         {
+            agentDest = agent.destination;
             agent.enabled = false;
             rb.drag = 1;
             rb.AddForce(new Vector3(0, 6f, 0), ForceMode.VelocityChange);
@@ -79,8 +81,9 @@ public class EnemyHealth : MonoBehaviour {
             if (other.gameObject.tag == "Ground")
             {
                 rb.drag = Mathf.Infinity;
-                agent.enabled = true;   
-                Debug.Log("enabled agent");
+                agent.enabled = true;
+                agent.destination = agentDest;
+                agent.Resume();
             }
         }
         
