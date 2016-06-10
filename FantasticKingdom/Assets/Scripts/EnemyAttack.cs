@@ -7,10 +7,13 @@ public class EnemyAttack : MonoBehaviour {
     public int attackDamage = 10;
 
     GameObject player;
+    GameObject target;
+    AllyHealth targetHealth;
     PlayerHealth playerHealth;
     EnemyHealth enemyHealth;
     Animator anim;
     bool playerInRange;
+    bool targetInRange;
     float timer;
 
 
@@ -26,10 +29,18 @@ public class EnemyAttack : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("player in range");
             playerInRange = true;
             player = other.gameObject;
             playerHealth = player.GetComponent<PlayerHealth>();
+        }
+        if (other.gameObject.tag == "Ally")
+        {
+            if (!target)
+            {
+                targetInRange = true;
+                target = other.gameObject;
+                targetHealth = target.GetComponent<AllyHealth>();
+            }
         }
     }
 
@@ -38,8 +49,13 @@ public class EnemyAttack : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("player not in range");
             playerInRange = false;
+        }
+        if(other.gameObject == target)
+        {
+            targetInRange = false;
+            target = null;
+            targetHealth = null;
         }
     }
 
@@ -48,25 +64,32 @@ public class EnemyAttack : MonoBehaviour {
         timer += Time.deltaTime;
         if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
         {
-            Attack();
+            Attack(0);
         }
-        /*
-        if (playerHealth.currentHealth <= 0)
+        if (timer >= timeBetweenAttacks && targetInRange && enemyHealth.currentHealth > 0)
         {
-
+            Attack(1);
         }
-        */
     }
 
 
-    void Attack()
+    void Attack(int target)
     {
         Debug.Log("attacking player");
         timer = 0f;
-
-        if (playerHealth.currentHealth > 0)
+        if (target == 0)
         {
-            playerHealth.TakeDamage(attackDamage);
+            if (playerHealth.currentHealth > 0)
+            {
+                playerHealth.TakeDamage(attackDamage);
+            }
+        }
+        else if (target == 1)
+        {
+            if (targetHealth.currentHealth > 0)
+            {
+                targetHealth.TakeDamage(attackDamage);
+            }
         }
         if (anim)
             anim.SetTrigger("Attacking");

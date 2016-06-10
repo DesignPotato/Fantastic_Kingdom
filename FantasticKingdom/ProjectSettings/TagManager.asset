@@ -8,6 +8,7 @@ TagManager:
   - SpawnPoint
   - GoldPile
   - Ground
+  - Ally
   layers:
   - Default
   - TransparentFX

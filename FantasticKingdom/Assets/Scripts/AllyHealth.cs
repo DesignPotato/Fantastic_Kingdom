@@ -1,32 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyHealth : MonoBehaviour {
+public class AllyHealth : MonoBehaviour {
 
     public int startingHealth = 100;
     public int currentHealth;
-    GameObject goldPile;
-    public int value = 20;//temp
 
-    AudioSource enemyAudio;
+    AudioSource healthAudio;
     Rigidbody rb;
     Animator anim;
-    GoldPile gold;
     NavMeshAgent agent;
 
-    //CapsuleCollider capsuleCollider;
     bool isDead;
-    
+
     // Use this for initialization
     void Awake () {
         rb = GetComponent<Rigidbody>();
-        enemyAudio = GetComponent<AudioSource>();
+        healthAudio = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        //capsuleCollider = GetComponent<CapsuleCollider>();
-        goldPile = GameObject.Find("GoldPile");
-        if (goldPile)
-            gold = goldPile.GetComponent<GoldPile>();
         currentHealth = startingHealth;
     }
 	
@@ -40,8 +32,8 @@ public class EnemyHealth : MonoBehaviour {
         if (isDead)
             return;
 
-        if(enemyAudio)
-            enemyAudio.Play();
+        if (healthAudio)
+            healthAudio.Play();
         currentHealth -= amount;
         if (rb && agent)
         {
@@ -55,18 +47,12 @@ public class EnemyHealth : MonoBehaviour {
         }
     }
 
-
     void Death()
     {
         isDead = true;
         if (anim)
             anim.SetTrigger("Die");
         //capsuleCollider.isTrigger = true;
-        if (gold)
-        {
-            gold.addGold(value);
-            gold.addKill();
-        }
         if (agent)
             agent.enabled = false;
         Destroy(gameObject, 2.5f);
@@ -79,10 +65,10 @@ public class EnemyHealth : MonoBehaviour {
             if (other.gameObject.tag == "Ground")
             {
                 rb.drag = Mathf.Infinity;
-                agent.enabled = true;   
+                agent.enabled = true;
                 Debug.Log("enabled agent");
             }
         }
-        
+
     }
 }

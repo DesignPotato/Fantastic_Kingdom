@@ -1037,9 +1037,10 @@ GameObject:
   - 195: {fileID: 19501088}
   - 54: {fileID: 5422996}
   - 114: {fileID: 11488770}
+  - 114: {fileID: 11434306}
   m_Layer: 0
   m_Name: Pikeman
-  m_TagString: Untagged
+  m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2304,7 +2305,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135422}
-  m_LocalRotation: {x: -0.33925676, y: 0.6005396, z: 0.6208315, w: -0.3725926}
+  m_LocalRotation: {x: -0.3392568, y: 0.6005397, z: 0.62083155, w: -0.37259263}
   m_LocalPosition: {x: 4.945112, y: -1.3335129, z: 15.507653}
   m_LocalScale: {x: 12.966289, y: 14.363662, z: 12.966288}
   m_Children: []
@@ -3006,6 +3007,19 @@ MonoBehaviour:
   attackRate: 0.5
   anim: {fileID: 0}
   AttackDamage: 50
+--- !u!114 &11434306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9baacd53e692984498d9a5c5543844d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 100
+  currentHealth: 0
 --- !u!114 &11488770
 MonoBehaviour:
   m_ObjectHideFlags: 1

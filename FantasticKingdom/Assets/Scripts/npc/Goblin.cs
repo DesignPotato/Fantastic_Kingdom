@@ -69,4 +69,12 @@ public class Goblin : Unit {
             Destroy(gameObject);
         }
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("SpawnPoint") && (goldStolen > 0 || GameObject.Find("GoldPile").GetComponent<GoldPile>().getGold() == 0))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
