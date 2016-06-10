@@ -9,7 +9,7 @@ public class GoblinTemp : Unit {
     private int goldStolen = 0;
 
 	// Use this for initialization
-	public override void Start () {
+	public override void Awake () {
         GoldPile = GameObject.FindGameObjectWithTag("GoldPile");
         Spawner = GameObject.FindGameObjectWithTag("Spawner");
         //GoldPile = GameObject.Find("GoldPile");

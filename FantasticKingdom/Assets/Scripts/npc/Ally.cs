@@ -12,6 +12,8 @@ public class Ally : Unit {
     public float attackRangeTier2 = 20.0f;
     public float attackRangeTier3 = 30.0f;
 
+    Animator anim;
+
     public GameObject Target
     {
         get { return target; }
@@ -59,9 +61,11 @@ public class Ally : Unit {
     //}
 
     // Use this for initialization
-    public override void Start () {
+    public override void Awake () {
         Target = null;
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        anim.SetBool("IsWalking", true);
 	}
 	
 	// Update is called once per frame

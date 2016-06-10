@@ -9,30 +9,36 @@ public class EnemyAttack : MonoBehaviour {
     GameObject player;
     PlayerHealth playerHealth;
     EnemyHealth enemyHealth;
+    Animator anim;
     bool playerInRange;
     float timer;
 
 
     void Awake () {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = player.GetComponent<PlayerHealth>();
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
-
+        anim = GetComponent<Animator>();
+        //Debug.Log("player: " + player + " health: " + playerHealth);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject.tag == "Player")
         {
+            Debug.Log("player in range");
             playerInRange = true;
+            player = other.gameObject;
+            playerHealth = player.GetComponent<PlayerHealth>();
         }
     }
 
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject.tag == "Player")
         {
+            Debug.Log("player not in range");
             playerInRange = false;
         }
     }
@@ -40,7 +46,6 @@ public class EnemyAttack : MonoBehaviour {
     void Update()
     {
         timer += Time.deltaTime;
-
         if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
         {
             Attack();
@@ -56,11 +61,14 @@ public class EnemyAttack : MonoBehaviour {
 
     void Attack()
     {
+        Debug.Log("attacking player");
         timer = 0f;
 
         if (playerHealth.currentHealth > 0)
         {
             playerHealth.TakeDamage(attackDamage);
         }
+        if (anim)
+            anim.SetTrigger("Attacking");
     }
 }

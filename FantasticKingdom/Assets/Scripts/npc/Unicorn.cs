@@ -15,7 +15,7 @@ public class Unicorn : Unit {
     static int DAMAGESTAT = 10;
 
     // Use this for initialization
-    public override void Start()
+    public override void Awake()
     {
         GoldPile = GameObject.Find("GoldPile");
 
@@ -30,7 +30,6 @@ public class Unicorn : Unit {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         //agent.destination = GoldPile.transform.position;
-        anim.SetBool("Attacking", true);
     }
 
     public static void upStats(float modifier)

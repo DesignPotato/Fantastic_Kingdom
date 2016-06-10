@@ -14,7 +14,7 @@ public class Goblin : Unit {
     static int DAMAGESTAT = 5;
 
     // Use this for initialization
-    public override void Start () {
+    public override void Awake () {
         GoldPile = GameObject.Find("GoldPile");
 
         //Some initial values
