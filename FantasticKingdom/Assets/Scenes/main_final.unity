@@ -609,6 +609,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   GoldPile: {fileID: 0}
+  AlliesLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  AlliedBuildings:
+    serializedVersion: 2
+    m_Bits: 0
+  SeekRadius: 7
 --- !u!114 &38740163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20497,7 +20504,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 104854, guid: 50011da6211fffe4a833733ae83f34c0, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50011da6211fffe4a833733ae83f34c0, type: 2}
