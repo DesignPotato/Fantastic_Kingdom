@@ -22,7 +22,7 @@ public class Goblin : Unit {
         armour = ARMOURSTAT;
         magResist = MAGSTAT;
         damage = DAMAGESTAT;
-        speed = 4;
+        speed = 3;
         numberOfAttackers = 0;
 
         agent = GetComponent<NavMeshAgent>();
