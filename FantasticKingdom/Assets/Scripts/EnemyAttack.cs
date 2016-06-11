@@ -81,14 +81,14 @@ public class EnemyAttack : MonoBehaviour {
         {
             if (playerHealth.currentHealth > 0)
             {
-                playerHealth.TakeDamage(attackDamage);
+                playerHealth.takeDamage(attackDamage);
             }
         }
         else if (target == 1)
         {
             if (targetHealth.currentHealth > 0)
             {
-                targetHealth.TakeDamage(attackDamage);
+                targetHealth.takeDamage(attackDamage);
             }
         }
         if (anim)

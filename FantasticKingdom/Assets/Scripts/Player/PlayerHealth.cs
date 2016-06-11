@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : HealthScriptAbstract {
     
     public float startingHealth = 100f;
     public float currentHealth;
@@ -67,7 +67,7 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     //Carry out actions related to taking damage
-    public void TakeDamage(int amount)
+    public override void takeDamage(int amount)
     {
         damaged = true;
         regenHealth = false;

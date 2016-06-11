@@ -8,9 +8,12 @@ public class Unicorn : Unit {
     private int goldStolen = 0;
     private Animator anim;
     private GameObject target;
+    private float attackTime = 1f;
+    private float nextAttack = 0f;
 
     public LayerMask AlliesLayer;
     public LayerMask AlliedBuildings;
+    public LayerMask Spawns;
     //public float LocalTargetBreachRadius = 5.0f;
     public float SeekRadius = 7.0f;
 
@@ -29,14 +32,12 @@ public class Unicorn : Unit {
         armour = ARMOURSTAT;
         magResist = MAGSTAT;
         damage = DAMAGESTAT;
-        speed = 4;
+        speed = 6;
 
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         target = null;
-
-        anim.SetBool("IsWalking", false);
     }
 
     public static void upStats(float modifier)
@@ -80,23 +81,63 @@ public class Unicorn : Unit {
                 //No enemies or buildings in range, go for gold instead
                 target = GoldPile;
             }
-            agent.destination = target.transform.position;
+        }
+        //Reset destination
+        agent.destination = target.transform.position;
+
+        //If at spawn point, exit the battle
+        Collider[] targets = Physics.OverlapSphere(transform.position, 3f, Spawns);
+        if (targets.Length > 0 && (goldStolen > 0 || GameObject.Find("GoldPile").GetComponent<GoldPile>().getGold() == 0))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    //Handles stealing gold
+    public void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name.Equals("GoldPile") && goldStolen == 0)
+        {
+            goldStolen = col.gameObject.GetComponent<GoldPile>().deductGold(GOLDSTEAL);
+            //Choose escape point
+            int escape = Random.Range(1, GameObject.Find("Spawner").GetComponent<Spawner>().spawnPointNumber());
+            GameObject spawnEscape;
+            if (escape > 9)
+            {
+                spawnEscape = GameObject.Find("Spawn" + escape);
+            }
+            else
+            {
+                spawnEscape = GameObject.Find("Spawn0" + escape);
+            }
+            target = spawnEscape;
         }
 
+        //If colliding with target, attack
+        if (col.gameObject.Equals(target) && Time.time > nextAttack)
+        {
+            attack(col);
+        }
+    }
 
-
-        // Facing the target first
-        //var relativePos = _activeTarget.transform.position - this.GetComponent<Transform>().position;
-        //var rotation = Quaternion.LookRotation(relativePos);
-        //var current = this.GetComponent<Transform>().rotation;
-        //transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * 2);
-
-        //if (agent && agent.isOnNavMesh && agent.enabled)
-       // {
-         //   anim.SetBool("IsWalking", true);
-           // agent.destination = _activeTarget.transform.position;
-           // agent.speed = (float)speed;
-           // agent.Resume();
-       // }
+    //For attacking
+    private void attack(Collision col)
+    {
+        Debug.Log("Attacking");
+        HealthScriptAbstract health;
+        if (col.gameObject.tag.Equals("Player"))
+        {
+            health = col.gameObject.GetComponent<PlayerHealth>();
+        }
+        else
+        {
+            health = col.gameObject.GetComponent<AllyHealth>();
+        }
+        health.takeDamage(damage);
+        nextAttack = Time.time + attackTime;
+        if (anim)
+        {
+            anim.SetTrigger("Attacking");
+        }
     }
 }

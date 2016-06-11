@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class AllyHealth : MonoBehaviour {
+public class AllyHealth : HealthScriptAbstract {
 
     public int startingHealth = 100;
     public int currentHealth;
@@ -29,7 +29,7 @@ public class AllyHealth : MonoBehaviour {
 	
 	}
 
-    public void TakeDamage(int amount)
+    public override void takeDamage(int amount)
     {
         if (isDead)
             return;

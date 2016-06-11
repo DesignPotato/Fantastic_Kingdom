@@ -13,10 +13,9 @@ GameObject:
   - 135: {fileID: 13500386}
   - 65: {fileID: 6539270}
   - 195: {fileID: 19530580}
-  - 114: {fileID: 11442506}
-  - 114: {fileID: 11497182}
   - 114: {fileID: 11462334}
-  m_Layer: 0
+  - 114: {fileID: 11497182}
+  m_Layer: 8
   m_Name: Unicorn
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1002,7 +1001,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!65 &6539270
 BoxCollider:
@@ -1033,19 +1032,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11442506
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 107292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ba5b9d612e6be40843964b6c5f13e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBetweenAttacks: 0.5
-  attackDamage: 10
 --- !u!114 &11462334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1057,7 +1043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a2c20a75a4da24693e3178a0073a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 10
   GoldPile: {fileID: 0}
   AlliesLayer:
     serializedVersion: 2
@@ -1065,6 +1051,9 @@ MonoBehaviour:
   AlliedBuildings:
     serializedVersion: 2
     m_Bits: 2048
+  Spawns:
+    serializedVersion: 2
+    m_Bits: 8192
   SeekRadius: 7
 --- !u!114 &11497182
 MonoBehaviour:
@@ -1088,7 +1077,7 @@ SphereCollider:
   m_GameObject: {fileID: 107292}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 1.6}
