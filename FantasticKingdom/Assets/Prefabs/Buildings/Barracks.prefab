@@ -58,9 +58,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123874}
-  m_LocalRotation: {x: 0, y: 0.9119655, z: 0, w: 0.41026697}
-  m_LocalPosition: {x: -4.21, y: 0.25, z: 4.91}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalRotation: {x: 0, y: -0.024109485, z: 0, w: 0.99970937}
+  m_LocalPosition: {x: 28.3, y: 33.12, z: -18}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 481752}
   - {fileID: 482650}
@@ -200,6 +200,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PikemanPrefab: {fileID: 171582, guid: 67df8439e6d185b4ca5969cee1767dd4, type: 2}
+  SpawnTime: 5
+  PopulationCap: 7
+  EnemiesLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  LocalTargetBreachRadius: 4
+  LocalTargetSeekRadius: 6
+  GlobalTargetBreachRadius: 27
+  GlobalTargetSeekRadius: 30
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
