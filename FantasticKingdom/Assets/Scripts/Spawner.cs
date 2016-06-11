@@ -7,22 +7,23 @@ public class Spawner : MonoBehaviour {
     private float spawnTimer;
     private int wave;
 
-    private int[,] spawns = new int[15, 2] { 
-        {30, 1 },
-        {15, 3 },
-        {30, 7 },
-        {30, 0 },
-        {30, 3 },
-        {30, 1 },
-        {30, 5 },
-        {30, 5 },
-        {30, 10 },
-        {30, 10 },
-        {30, 10 },
-        {30, 15 },
-        {30, 0 },
-        {30, 10 },
-        {30, 10 }
+    //Table determining the size and composition of enemies in waves
+    private int[,] spawns = new int[15, 3] { 
+        {15, 1, 0 },
+        {15, 3, 0 },
+        {30, 7, 0 },
+        {30, 0, 1, },
+        {30, 3, 1 },
+        {30, 1, 2 },
+        {30, 5, 2 },
+        {30, 5, 3 },
+        {30, 10, 3 },
+        {30, 10, 4 },
+        {30, 10, 5 },
+        {30, 15, 6 },
+        {30, 0, 8 },
+        {30, 10, 8 },
+        {30, 10, 10 }
     };
 
     // Use this for initialization
@@ -65,24 +66,11 @@ public class Spawner : MonoBehaviour {
             newGoblin.gameObject.SetActive(true);
         }
         //Spawn Unicorns
-
-
-        //List<int> spawnNums = new List<int>();
-        //for(int i = 0; i < spawnPoints.Count; i++)
-        //{
-        //   spawnNums.Add(i);
-        //}
-        //for(int j = 0; j < wave; j++)
-        //{
-        //  int x = Random.Range(0, spawnNums.Count);
-        // int point = spawnNums[x];
-        //spawnNums.RemoveAt(x);
-        //for(int y = 0; y < 5; y++)
-        //{
-        //   GameObject newGoblin = (GameObject)Instantiate(Resources.Load("Goblin"), spawnPoints[point].position, spawnPoints[point].rotation);
-        //  newGoblin.layer = LayerMask.NameToLayer("Enemies");
-        //  newGoblin.gameObject.SetActive(true);
-        //}
-        // }
+        for (int i = 0; i < spawns[wave, 2]; i++)
+        {
+            GameObject newUnicorn = (GameObject)Instantiate(Resources.Load("Unicorn"), spawnPoints[spawnPoint].position, spawnPoints[spawnPoint].rotation);
+            newUnicorn.layer = LayerMask.NameToLayer("Enemies");
+            newUnicorn.gameObject.SetActive(true);
+        }
     }
 }

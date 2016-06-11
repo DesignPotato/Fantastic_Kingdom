@@ -14,7 +14,7 @@ public abstract class Unit : MonoBehaviour{
     protected NavMeshAgent agent;
 
     // Use this for initialization
-    public abstract void Awake();
+    public abstract void Start();
 
     // Update is called once per frame
     public abstract void Update();
