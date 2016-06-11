@@ -10,6 +10,7 @@ public class Ally : Unit {
     public LayerMask EnemiesLayer;
     public GameObject LocalTarget;
     public GameObject GlobalTarget;
+    public GameObject Home; // Original Spawn Point
     public float LocalTargetBreachRadius = 5.0f;
     public float LocalTargetSeekRadius = 7.0f;
     public float PatrolLimitRadius = 30.0f;
@@ -47,19 +48,19 @@ public class Ally : Unit {
 	public override void Update () {
         if (LocalTarget == null)
         {
-            LocalTarget = Barracks.SeekTarget(goldPile.transform, LocalTargetBreachRadius, LocalTargetSeekRadius, EnemiesLayer);
+            LocalTarget = AllySpawner.SeekTarget(goldPile.transform, LocalTargetBreachRadius, LocalTargetSeekRadius, EnemiesLayer);
         }
 
-        if (LocalTarget == null && GlobalTarget == null)
-        {
-            if (agent && agent.isOnNavMesh && agent.enabled)
-            {
-                agent.Stop();
-                anim.SetBool("IsWalking", false);
-            }
+        //if (LocalTarget == null && GlobalTarget == null)
+        //{
+        //    if (agent && agent.isOnNavMesh && agent.enabled)
+        //    {
+        //        //agent.Stop();
+        //        //anim.SetBool("IsWalking", false);
+        //    }
 
-            return;   
-        }
+        //    return;   
+        //}
 
         // Give up if the target enemy runs too far out.
         if (LocalTarget != null && Vector3.Distance(LocalTarget.transform.position, goldPile.transform.position) > PatrolLimitRadius)
@@ -75,9 +76,11 @@ public class Ally : Unit {
 
         _activeTarget = LocalTarget ?? GlobalTarget;
 
-        // No target so do nothing
+        // No target so go home
         if (_activeTarget == null)
-            return;
+        {
+            _activeTarget = Home;
+        }
         
         // Facing the target first
         var relativePos = _activeTarget.transform.position - this.GetComponent<Transform>().position;

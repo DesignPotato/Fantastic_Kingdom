@@ -44,7 +44,6 @@ GameObject:
   - 4: {fileID: 457878}
   - 95: {fileID: 9570956}
   - 65: {fileID: 6573150}
-  - 114: {fileID: 11409772}
   m_Layer: 9
   m_Name: Barracks
   m_TagString: Untagged
@@ -52,6 +51,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &181182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 439600}
+  - 114: {fileID: 11413280}
+  m_Layer: 0
+  m_Name: spawn_point
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &439600
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181182}
+  m_LocalRotation: {x: 0, y: 0.024109485, z: 0, w: 0.99970937}
+  m_LocalPosition: {x: -0.045, y: 0.0077, z: -0.001}
+  m_LocalScale: {x: 0.033333335, y: 0.033333335, z: 0.033333335}
+  m_Children: []
+  m_Father: {fileID: 457878}
+  m_RootOrder: 2
 --- !u!4 &457878
 Transform:
   m_ObjectHideFlags: 1
@@ -59,11 +86,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123874}
   m_LocalRotation: {x: 0, y: -0.024109485, z: 0, w: 0.99970937}
-  m_LocalPosition: {x: 28.3, y: 33.12, z: -18}
+  m_LocalPosition: {x: 28.3, y: 33.1, z: -18}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 481752}
   - {fileID: 482650}
+  - {fileID: 439600}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &481752
@@ -188,15 +216,15 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11409772
+--- !u!114 &11413280
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 123874}
+  m_GameObject: {fileID: 181182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab7905a49884b654e954836d2773d539, type: 3}
+  m_Script: {fileID: 11500000, guid: 98032bd0f11343345bc46b6925b02981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PikemanPrefab: {fileID: 171582, guid: 67df8439e6d185b4ca5969cee1767dd4, type: 2}
