@@ -37,7 +37,7 @@ public class Ally : Unit {
     //}
 
     // Use this for initialization
-    public override void Awake () {
+    public override void Start () {
         LocalTarget = null;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();

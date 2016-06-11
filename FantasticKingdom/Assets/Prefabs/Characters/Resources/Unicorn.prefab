@@ -1061,10 +1061,10 @@ MonoBehaviour:
   GoldPile: {fileID: 0}
   AlliesLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   AlliedBuildings:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   SeekRadius: 7
 --- !u!114 &11497182
 MonoBehaviour:
