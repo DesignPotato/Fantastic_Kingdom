@@ -8,6 +8,14 @@ public class GoldPile : MonoBehaviour {
     //The amount of gold the player should begin with
     public int startGold = 101;
     public Text text;
+
+    public int minGoldPileSize;
+    public int maxGoldPileSize;
+    public float minPileTranslate;
+    public float maxPileTranslate;
+
+    float difTranslate;
+
     //The amount of gold the player has
 	private int gold;
     int maxGold;
@@ -22,6 +30,9 @@ public class GoldPile : MonoBehaviour {
 		gold = startGold;
         maxGold = gold;
         _nextInterestDue = Time.time + interestPeriod;
+        float i = (float)(maxGoldPileSize - minGoldPileSize);
+        float j = Mathf.Abs(maxPileTranslate) - Mathf.Abs(minGoldPileSize);
+        difTranslate = j / i;
 	}
 	
 	// Update is called once per frame
@@ -34,6 +45,21 @@ public class GoldPile : MonoBehaviour {
 
         if(text)
             text.text = "" + gold;
+        
+        /*
+        if (gold <= minGoldPileSize)
+        {
+            transform.position = new Vector3(transform.position.x, minPileTranslate, transform.position.z);
+        }
+        else if (gold >= maxGoldPileSize)
+        {
+            transform.position = new Vector3(transform.position.x, maxPileTranslate, transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, minPileTranslate + (0.005f * gold)/*+ (difTranslate * (gold - minGoldPileSize))*//*, transform.position.z);
+        }
+        */
     }
 
     public int getGold()

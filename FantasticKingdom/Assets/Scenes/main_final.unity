@@ -9914,7 +9914,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412196, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.43999863
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 412196, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9955,6 +9955,22 @@ Prefab:
     - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
       propertyPath: interestRate
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
+      propertyPath: minGoldPileSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
+      propertyPath: maxGoldPileSize
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
+      propertyPath: maxPileTranslate
+      value: -0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423478, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
+      propertyPath: minPileTranslate
+      value: -1.52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88b82102942789a4ba8b1e46d8173f77, type: 2}
@@ -16794,6 +16810,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1224710177}
   m_Mesh: {fileID: 4300006, guid: ed3b444ce3c5fff42aa5b4624b41fa37, type: 3}
+--- !u!1 &1237510903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1237510904}
+  m_Layer: 0
+  m_Name: PlayerSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1237510904
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237510903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.228, y: 0.991, z: -20.914}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1001 &1239856510
 Prefab:
   m_ObjectHideFlags: 0
@@ -19429,6 +19472,10 @@ Prefab:
       propertyPath: healthRegenStep
       value: 0.33
       objectReference: {fileID: 0}
+    - target: {fileID: 11472268, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1237510904}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
   m_IsPrefabParent: 0

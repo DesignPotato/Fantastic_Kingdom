@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour {
     public Text HealthText;
     public RawImage HPBar;
 
+    public Transform spawnPoint;
+
     Animator anim;
     AudioSource playerDamagedAudio;
     PlayerMovement playerMovement;
@@ -105,11 +107,22 @@ public class PlayerHealth : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    public void Respawn()
+    {       
+        isDead = false;
+        currentHealth = startingHealth;
+        playerMovement.enabled = true;
+        anim.SetTrigger("Spawn");
+        transform.position = spawnPoint.position;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 58, 0));
+    }
+
     //Wait for the provided number of seconds
     IEnumerator RespawnTimer(float time)
     {
         yield return new WaitForSeconds(3);
-        RestartLevel();
+        //RestartLevel();
+        Respawn();
     }
 
     //Updates the UI component health bar
