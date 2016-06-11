@@ -16,32 +16,14 @@ public class Ally : Unit {
     public float PatrolLimitRadius = 30.0f;
 
     private GameObject _activeTarget;
-
-    Animator anim;
-
-    //public GameObject LocalTarget // Tier 1 targets are found around the pikeman.
-    //{
-    //    get { return _localTarget; }
-    //    set
-    //    {
-    //        _localTarget = value;
-
-    //        if (_localTarget != null)
-    //            _localTarget.GetComponent<Goblin>().numberOfAttackers -= 1;
-
-    //        if (value != null)
-    //            value.GetComponent<Goblin>().numberOfAttackers += 1;
-
-    //        _localTarget = value;
-    //    }
-    //}
+    private Animator _anim;
 
     // Use this for initialization
-    public override void Awake () {
+    public override void Start () {
         LocalTarget = null;
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
-        anim.SetBool("IsWalking", false);
+        _anim = GetComponent<Animator>();
+        _anim.SetBool("IsWalking", false);
 	}
 	
 	// Update is called once per frame
@@ -90,7 +72,7 @@ public class Ally : Unit {
 
         if (agent && agent.isOnNavMesh && agent.enabled)
         {
-            anim.SetBool("IsWalking", true);
+            _anim.SetBool("IsWalking", true);
             agent.destination = _activeTarget.transform.position;
             agent.speed = (float)speed;
             agent.Resume();
