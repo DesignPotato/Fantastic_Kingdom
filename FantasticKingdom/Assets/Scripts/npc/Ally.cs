@@ -15,33 +15,15 @@ public class Ally : Unit {
     public float LocalTargetSeekRadius = 7.0f;
     public float PatrolLimitRadius = 30.0f;
 
-    private GameObject _activeTarget;
-
-    Animator anim;
-
-    //public GameObject LocalTarget // Tier 1 targets are found around the pikeman.
-    //{
-    //    get { return _localTarget; }
-    //    set
-    //    {
-    //        _localTarget = value;
-
-    //        if (_localTarget != null)
-    //            _localTarget.GetComponent<Goblin>().numberOfAttackers -= 1;
-
-    //        if (value != null)
-    //            value.GetComponent<Goblin>().numberOfAttackers += 1;
-
-    //        _localTarget = value;
-    //    }
-    //}
+    private Vector3? _activeTarget;
+    private Animator _anim;
 
     // Use this for initialization
     public override void Start () {
         LocalTarget = null;
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
-        anim.SetBool("IsWalking", false);
+        _anim = GetComponent<Animator>();
+        _anim.SetBool("IsWalking", false);
 	}
 	
 	// Update is called once per frame
@@ -74,24 +56,33 @@ public class Ally : Unit {
             GlobalTarget = null;
         }
 
-        _activeTarget = LocalTarget ?? GlobalTarget;
+        if (LocalTarget == null && GlobalTarget == null)
+        {
+            _activeTarget = null;
+        }
+        else
+        {
+            _activeTarget = (LocalTarget ?? GlobalTarget).transform.position;
+        }
+        
 
         // No target so go home
         if (_activeTarget == null)
         {
-            _activeTarget = Home;
+            _activeTarget = Home.transform.position;
         }
-        
+
         // Facing the target first
-        var relativePos = _activeTarget.transform.position - this.GetComponent<Transform>().position;
+        _activeTarget = (_activeTarget + transform.position) / 2;
+        var relativePos = _activeTarget.Value - this.GetComponent<Transform>().position;
         var rotation = Quaternion.LookRotation(relativePos);
         var current = this.GetComponent<Transform>().rotation;
         transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * 2);
 
         if (agent && agent.isOnNavMesh && agent.enabled)
         {
-            anim.SetBool("IsWalking", true);
-            agent.destination = _activeTarget.transform.position;
+            _anim.SetBool("IsWalking", true);
+            agent.destination = _activeTarget.Value;
             agent.speed = (float)speed;
             agent.Resume();
         }
