@@ -8,7 +8,9 @@ public class PlayerHealth : MonoBehaviour {
     public float startingHealth = 100f;
     public float currentHealth;
     public Image damageImage;
-    
+    public float healthRegenDelay;
+    public float healthRegenStep = 1;
+
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
     public Text HealthText;
@@ -18,6 +20,8 @@ public class PlayerHealth : MonoBehaviour {
     AudioSource playerDamagedAudio;
     PlayerMovement playerMovement;
 
+    float healthTimer;
+    bool regenHealth;
     bool isDead;
     bool damaged; //Is the player being damaged
 
@@ -26,6 +30,7 @@ public class PlayerHealth : MonoBehaviour {
         playerDamagedAudio = GetComponent<AudioSource>();
         playerMovement = GetComponent<PlayerMovement>();
         currentHealth = startingHealth;
+        regenHealth = false;
     }
 	
 	void Update () {
@@ -47,17 +52,42 @@ public class PlayerHealth : MonoBehaviour {
         
     }
 
+    void FixedUpdate()
+    {
+        healthTimer += Time.fixedDeltaTime;
+
+        if (healthTimer >= healthRegenDelay)
+        {
+            regenHealth = true;
+        }
+        if (regenHealth && currentHealth < startingHealth)
+            RegenHealth();
+    }
+
     //Carry out actions related to taking damage
     public void TakeDamage(int amount)
     {
         damaged = true;
-
+        regenHealth = false;
         playerDamagedAudio.Play();
         currentHealth -= amount;
+        healthTimer = 0;
 
         if (currentHealth <= 0 && !isDead)
         {
             Death();
+        }
+    }
+
+    void RegenHealth()
+    {
+        if (currentHealth > 0 && currentHealth < startingHealth)
+        {
+            currentHealth += healthRegenStep;
+        }
+        if (currentHealth > startingHealth)
+        {
+            currentHealth = startingHealth;
         }
     }
 

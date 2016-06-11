@@ -13536,6 +13536,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -16621,6 +16622,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -18137,6 +18139,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -19418,6 +19421,14 @@ Prefab:
       propertyPath: PauseMenu
       value: 
       objectReference: {fileID: 1207965982}
+    - target: {fileID: 11472268, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
+      propertyPath: healthRegenDelay
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11472268, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
+      propertyPath: healthRegenStep
+      value: 0.33
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 585989f04dc8d4aecb07f537645c0d83, type: 2}
   m_IsPrefabParent: 0
