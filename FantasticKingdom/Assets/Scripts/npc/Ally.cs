@@ -87,10 +87,10 @@ public class Ally : Unit {
 
         if (agent && agent.isOnNavMesh && agent.enabled)
         {
+            anim.SetBool("IsWalking", true);
             agent.destination = _activeTarget.transform.position;
             agent.speed = (float)speed;
             agent.Resume();
-            anim.SetBool("IsWalking", true);
         }
 	}
 
