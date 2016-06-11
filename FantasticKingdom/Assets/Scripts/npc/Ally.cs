@@ -7,118 +7,92 @@ public class Ally : Unit {
 
     public GameObject goldPile;
     public Collider[] PotentialTargets;
-    public LayerMask enemiesLayer;
-    public GameObject target;
-    public float attackRangeTier2 = 20.0f;
-    public float attackRangeTier3 = 30.0f;
+    public LayerMask EnemiesLayer;
+    public GameObject LocalTarget;
+    public GameObject GlobalTarget;
+    public float LocalTargetBreachRadius = 5.0f;
+    public float LocalTargetSeekRadius = 7.0f;
+    public float PatrolLimitRadius = 30.0f;
+
+    private GameObject _activeTarget;
 
     Animator anim;
 
-    public GameObject Target
-    {
-        get { return target; }
-        set {
-            target = value;
-
-            if (target != null)
-                target.GetComponent<Goblin>().numberOfAttackers -= 1;
-
-            if (value != null)
-                value.GetComponent<Goblin>().numberOfAttackers += 1;
-
-            target = value;
-        }
-    }
-    //public GameObject originSpawner;
-
-
-    //private IEnumerator<Collider> EnemiesUnderAttack {
-    //    get
-    //    {
-    //        if (allySpawner != null && allySpawner.GetComponent<AllySpawner>() != null)
-    //        {
-    //            var allies = allySpawner.GetComponent<AllySpawner>().Allies;
-    //            foreach (var a in allies)
-    //            {
-    //                var tar = a.GetComponent<Ally>().target;
-    //                if (tar != null)
-    //                    yield return tar.GetComponent<Collider>();
-    //            }
-    //        }
-    //        else
-    //        {
-    //            yield return null;
-    //        }
-    //    }
-    //}
-
-    //private Transform TargetTransform
+    //public GameObject LocalTarget // Tier 1 targets are found around the pikeman.
     //{
-    //    get
+    //    get { return _localTarget; }
+    //    set
     //    {
-    //        return this.target.GetComponent<Transform>();
+    //        _localTarget = value;
+
+    //        if (_localTarget != null)
+    //            _localTarget.GetComponent<Goblin>().numberOfAttackers -= 1;
+
+    //        if (value != null)
+    //            value.GetComponent<Goblin>().numberOfAttackers += 1;
+
+    //        _localTarget = value;
     //    }
     //}
 
     // Use this for initialization
     public override void Awake () {
-        Target = null;
+        LocalTarget = null;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        anim.SetBool("IsWalking", true);
+        anim.SetBool("IsWalking", false);
 	}
 	
 	// Update is called once per frame
 	public override void Update () {
-        if (Target == null)
+        if (LocalTarget == null)
         {
-            Target = SeekTarget(goldPile.transform, attackRangeTier3);
-            
+            LocalTarget = Barracks.SeekTarget(goldPile.transform, LocalTargetBreachRadius, LocalTargetSeekRadius, EnemiesLayer);
         }
 
-        if (Target != null)
-        {
-            // Give up if the target enemy runs too far out.
-            var distanceFromGold = Vector3.Distance(Target.transform.position, goldPile.transform.position);
-            if (distanceFromGold > attackRangeTier3)
-            {
-                Target = null;
-                return;
-            }
-
-            // Facing the target first
-            var relativePos = Target.transform.position - this.GetComponent<Transform>().position;
-            var rotation = Quaternion.LookRotation(relativePos);
-            var current = this.GetComponent<Transform>().rotation;
-            transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * 2);
-
-            if (agent && agent.isOnNavMesh && agent.enabled)
-            {
-                agent.destination = Target.transform.position;
-                agent.Resume();
-            }
-        }
-        else //if no target stay where it is.
+        if (LocalTarget == null && GlobalTarget == null)
         {
             if (agent && agent.isOnNavMesh && agent.enabled)
+            {
                 agent.Stop();
+                anim.SetBool("IsWalking", false);
+            }
+
+            return;   
+        }
+
+        // Give up if the target enemy runs too far out.
+        if (LocalTarget != null && Vector3.Distance(LocalTarget.transform.position, goldPile.transform.position) > PatrolLimitRadius)
+        {
+            LocalTarget = null;
+        }
+
+        // Give up if the target enemy runs too far out.
+        if (GlobalTarget != null && Vector3.Distance(GlobalTarget.transform.position, goldPile.transform.position) > PatrolLimitRadius)
+        {
+            GlobalTarget = null;
+        }
+
+        _activeTarget = LocalTarget ?? GlobalTarget;
+
+        // No target so do nothing
+        if (_activeTarget == null)
+            return;
+        
+        // Facing the target first
+        var relativePos = _activeTarget.transform.position - this.GetComponent<Transform>().position;
+        var rotation = Quaternion.LookRotation(relativePos);
+        var current = this.GetComponent<Transform>().rotation;
+        transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * 2);
+
+        if (agent && agent.isOnNavMesh && agent.enabled)
+        {
+            agent.destination = _activeTarget.transform.position;
+            agent.speed = (float)speed;
+            agent.Resume();
+            anim.SetBool("IsWalking", true);
         }
 	}
 
-    private GameObject SeekTarget(Transform seekSphereCentre, float seekSphereRadius)
-    {
-        var allTargets = Physics.OverlapSphere(seekSphereCentre.position, seekSphereRadius, enemiesLayer);
-        var PotentialTargets = allTargets
-            .Where(t => t.GetComponent<Goblin>().numberOfAttackers < 1)
-            .Select(t => t.gameObject);
 
-        var numOfTargetsInRange = PotentialTargets.Count();
-        if (numOfTargetsInRange > 0)
-        {
-            var targetIndexPicked = Random.Range(0, numOfTargetsInRange);
-            return PotentialTargets.ToArray()[targetIndexPicked];
-        }
-
-        return null;
-    }
 }

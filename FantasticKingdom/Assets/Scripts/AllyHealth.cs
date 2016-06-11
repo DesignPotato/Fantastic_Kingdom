@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AllyHealth : MonoBehaviour {
 
     public int startingHealth = 100;
     public int currentHealth;
+    public IList<GameObject> Squad;
 
     AudioSource healthAudio;
     Rigidbody rb;
@@ -35,12 +37,12 @@ public class AllyHealth : MonoBehaviour {
         if (healthAudio)
             healthAudio.Play();
         currentHealth -= amount;
-        if (rb && agent)
-        {
-            agent.enabled = false;
-            rb.drag = 1;
-            rb.AddForce(new Vector3(0, 6f, 0), ForceMode.VelocityChange);
-        }
+        //if (rb && agent)
+        //{
+        //    agent.enabled = false;
+        //    rb.drag = 1;
+        //    rb.AddForce(new Vector3(0, 6f, 0), ForceMode.VelocityChange);
+        //}
         if (currentHealth <= 0)
         {
             Death();
@@ -55,6 +57,8 @@ public class AllyHealth : MonoBehaviour {
         //capsuleCollider.isTrigger = true;
         if (agent)
             agent.enabled = false;
+        if (Squad != null && Squad.Contains(gameObject))
+            Squad.Remove(gameObject);
         Destroy(gameObject, 2.5f);
     }
 
