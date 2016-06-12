@@ -115,14 +115,14 @@ public class Unicorn : Unit {
         }
 
         //If colliding with target, attack
-        /*
+        
         if (col.gameObject.Equals(target) && Time.time > nextAttack)
         {
             attack(col);
         }
-        */
+        
     }
-
+    /*
     public void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.Equals(target) && Time.time > nextAttack)
@@ -130,9 +130,9 @@ public class Unicorn : Unit {
             attack(col);
         }
     }
-
+    */
     //For attacking
-    private void attack(Collider col)
+    private void attack(Collision col)
     {
         Debug.Log("Attacking");
         HealthScriptAbstract health;
