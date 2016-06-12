@@ -82,10 +82,21 @@ public class Unicorn : Unit {
                 target = GoldPile;
             }
         }
-        Debug.Log(target.name);
+
         //Reset destination
         if (agent && agent.isOnNavMesh)
+        {
             agent.destination = target.transform.position;
+            //Only move when not attacking
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attacking"))
+            {
+                agent.Stop();
+            }
+            else
+            {
+                agent.Resume();
+            }
+        }
 
         //If at spawn point, exit the battle
         Collider[] targets = Physics.OverlapSphere(transform.position, 3f, Spawns);
