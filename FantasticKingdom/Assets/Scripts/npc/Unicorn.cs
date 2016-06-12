@@ -64,11 +64,11 @@ public class Unicorn : Unit {
     // Update is called once per frame
     public override void Update()
     {
-        //If dont have a target, check for new one
-        if (target == null)
+        //Run away once unicorn has gold
+        if (target == null || !target.tag.Equals("SpawnPoint"))
         {
-            //First seek nearest allied unit
-            target = seekTarget(SeekRadius, AlliesLayer);
+        //First seek nearest allied unit
+        target = seekTarget(SeekRadius, AlliesLayer);
 
             if (target == null)
             {
@@ -82,6 +82,7 @@ public class Unicorn : Unit {
                 target = GoldPile;
             }
         }
+        Debug.Log(target.name);
         //Reset destination
         if (agent && agent.isOnNavMesh)
             agent.destination = target.transform.position;
@@ -122,15 +123,7 @@ public class Unicorn : Unit {
         }
         
     }
-    /*
-    public void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.Equals(target) && Time.time > nextAttack)
-        {
-            attack(col);
-        }
-    }
-    */
+
     //For attacking
     private void attack(Collision col)
     {
