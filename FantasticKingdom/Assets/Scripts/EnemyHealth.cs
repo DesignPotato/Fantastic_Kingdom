@@ -76,7 +76,7 @@ public class EnemyHealth : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        if (agent.enabled == false)
+        if (agent.enabled == false && isDead == false)
         {
             if (other.gameObject.tag == "Ground")
             {

@@ -12,14 +12,29 @@ public class StartManager : MonoBehaviour {
 	public GameObject quitCheck;
 	public Texture2D cursorTexture;
 
+    public GameObject tutorial;
+
 	public void Start(){
-		//Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+        //Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+        if (tutorial)
+            tutorial.active = false;
 	}
 
 	public void StartGame()
 	{
 		SceneManager.LoadScene (1, LoadSceneMode.Single);
 	}
+
+    public void LoadTutorial()
+    {
+        Debug.Log("Fuvk");
+        Debug.Log(tutorial);
+        if (tutorial)
+        {
+            Debug.Log("Fuyyyvk");
+            tutorial.active = true;
+        }
+    }
 
 	public void checkQuit(bool enabled){
 		quitCheck.SetActive (enabled);

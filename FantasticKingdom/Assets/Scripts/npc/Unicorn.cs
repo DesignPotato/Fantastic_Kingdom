@@ -83,7 +83,8 @@ public class Unicorn : Unit {
             }
         }
         //Reset destination
-        agent.destination = target.transform.position;
+        if (agent && agent.isOnNavMesh)
+            agent.destination = target.transform.position;
 
         //If at spawn point, exit the battle
         Collider[] targets = Physics.OverlapSphere(transform.position, 3f, Spawns);
