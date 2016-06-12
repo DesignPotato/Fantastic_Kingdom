@@ -111,7 +111,7 @@ public class BuildManager : MonoBehaviour {
 	}
 
 	bool CheckBuilding(){
-		if (Input.GetKeyDown (KeyCode.B)) {
+		if (Input.GetButtonDown("Building")) {
 			if (!building) {
 				building = true;
 				//canvas.enabled = true;
@@ -127,7 +127,69 @@ public class BuildManager : MonoBehaviour {
 		return building;
 	}
 
+
+	private bool isWaiting = false;
 	void Select(){
+		if (isWaiting) {
+			if(Input.GetAxis ("DPadLR") == 0)
+				isWaiting = false;
+		} else {
+			if (Input.GetAxis ("DPadLR") < 0) {
+				if (currentObject.Equals (gateGhost)) {
+					currentObject.SetActive (false);
+					currentObject = wallGhost;
+					currentObject.SetActive (true);
+					icon1Title.color = normalColor2;
+					icon2Title.color = normalColor;
+					icon3Title.color = normalColor;
+					icon4Title.color = normalColor;
+				} else if (currentObject.Equals (towerGhost)) {
+					currentObject.SetActive (false);
+					currentObject = gateGhost;
+					currentObject.SetActive (true);
+					icon1Title.color = normalColor;
+					icon2Title.color = normalColor2;
+					icon3Title.color = normalColor;
+					icon4Title.color = normalColor;
+				} else if (currentObject.Equals (barracksGhost)) {
+					currentObject.SetActive (false);
+					currentObject = towerGhost;
+					currentObject.SetActive (true);
+					icon1Title.color = normalColor;
+					icon2Title.color = normalColor;
+					icon3Title.color = normalColor2;
+					icon4Title.color = normalColor;
+				}
+				isWaiting = true;
+			} else if (Input.GetAxis ("DPadLR") > 0) {
+				if (currentObject.Equals (wallGhost)) {
+					currentObject.SetActive (false);
+					currentObject = gateGhost;
+					currentObject.SetActive (true);
+					icon1Title.color = normalColor;
+					icon2Title.color = normalColor2;
+					icon3Title.color = normalColor;
+					icon4Title.color = normalColor;
+				} else if (currentObject.Equals (gateGhost)) {
+					currentObject.SetActive (false);
+					currentObject = towerGhost;
+					currentObject.SetActive (true);
+					icon1Title.color = normalColor;
+					icon2Title.color = normalColor;
+					icon3Title.color = normalColor2;
+					icon4Title.color = normalColor;
+				} else if (currentObject.Equals (towerGhost)) {
+					currentObject.SetActive (false);
+					currentObject = barracksGhost;
+					currentObject.SetActive (true);
+					icon1Title.color = normalColor;
+					icon2Title.color = normalColor;
+					icon3Title.color = normalColor;
+					icon4Title.color = normalColor2;
+				}
+				isWaiting = true;
+			}
+		}
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			currentObject.SetActive(false);
 			currentObject = wallGhost;
@@ -167,17 +229,17 @@ public class BuildManager : MonoBehaviour {
 	}
 
 	void Rotate(){
-		if (Input.GetKey(KeyCode.E)) {
+		if (Input.GetButton("RotateBuildL")) {
 			currentObject.transform.Rotate (0, -rotateSpeed, 0);
 		}
-		if(Input.GetKey(KeyCode.Q)) {
+		if(Input.GetButton("RotateBuildR")) {
 			currentObject.transform.Rotate (0, rotateSpeed, 0);
 		}
 	}
 
 	void Build(){
 		GhostBuilding gb = currentObject.GetComponent<GhostBuilding>();
-		if (!gb.IsTriggered() && Input.GetMouseButtonDown(0)) {
+		if (!gb.IsTriggered() && (Input.GetButtonDown("Fire1") || Input.GetAxis("JoyAttack") < -0.5)) {
 			if (currentObject == wallGhost) {
 				if (goldPile.getGold () > wallCost) {
 					goldPile.deductGold (wallCost);

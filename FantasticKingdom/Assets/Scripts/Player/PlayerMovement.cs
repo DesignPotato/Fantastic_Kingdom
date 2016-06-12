@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour {
         float forward = Input.GetAxisRaw("Vertical");
         float strafe = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKey("left shift"))
+		if (Input.GetButton("Sprint"))
         {
             speed = sprintSpeed;
             anim.SetFloat("RunSpeed", 2);
@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour {
                 agent.enabled = false;
             playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
         }
-		if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded())
+		if (Input.GetButtonDown("Roll") && IsGrounded())
         {
             if(currentCD == 0)
                 Roll();
