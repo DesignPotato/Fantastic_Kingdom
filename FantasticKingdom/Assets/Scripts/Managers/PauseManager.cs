@@ -9,7 +9,14 @@ using UnityEditor;
 
 public class PauseManager : MonoBehaviour {
 
-    public static bool Paused = false;
+	public static bool Paused = false;
+	public GameObject resumeButton;
+	public GameObject restartButton;
+	public GameObject menuButton;
+	public GameObject quitButton;
+
+	private bool clicking = false;
+	private GameObject currentButton;
 
     Canvas canvas;
 
@@ -25,6 +32,91 @@ public class PauseManager : MonoBehaviour {
             canvas.enabled = !canvas.enabled;
             Pause();
         }
+
+		if (Paused) {
+			if (!clicking && (Input.GetAxisRaw ("DPadUD") > 0 || Input.GetAxisRaw("Vertical") > 0.2)) {
+				clicking = true;
+				if (currentButton == null) {
+					currentButton = quitButton;
+					resumeButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+				} else if (currentButton.Equals (resumeButton)) {
+					currentButton = quitButton;
+					resumeButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+				} else if (currentButton.Equals (restartButton)) {
+					currentButton = resumeButton;
+					resumeButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Normal", true);
+				} else if (currentButton.Equals (menuButton)) {
+					currentButton = restartButton;
+					resumeButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Normal", true);
+				} else if (currentButton.Equals (quitButton)) {
+					currentButton = menuButton ;
+					resumeButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Normal", true);
+				}
+			} else if (!clicking && (Input.GetAxisRaw ("DPadUD") < 0 || Input.GetAxisRaw("Vertical") < -0.2)) {
+				clicking = true;
+				if (currentButton == null) {
+					currentButton = quitButton;
+					resumeButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Normal", true);
+				} else if (currentButton.Equals (resumeButton)) {
+					currentButton = restartButton;
+					resumeButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Normal", true);
+				} else if (currentButton.Equals (restartButton)) {
+					currentButton = menuButton;
+					resumeButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Normal", true);
+				} else if (currentButton.Equals (menuButton)) {
+					currentButton = quitButton;
+					resumeButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+				} else if (currentButton.Equals (quitButton)) {
+					currentButton = resumeButton ;
+					resumeButton.GetComponent<Animator> ().SetBool ("Highlighted", true);
+					restartButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					menuButton.GetComponent<Animator> ().SetBool ("Normal", true);
+					quitButton.GetComponent<Animator> ().SetBool ("Normal", true);
+				}
+			} else if (clicking && Input.GetAxisRaw ("DPadUD") == 0 && Input.GetAxisRaw("Vertical") == 0) {
+				clicking = false;
+			}
+
+			if (Input.GetButtonUp ("Jump") && currentButton != null) {
+				if (currentButton.Equals (resumeButton)) {
+					Pause ();
+					canvas.enabled = !canvas.enabled;
+				} else if(currentButton.Equals (restartButton)){
+					Restart();
+				} else if(currentButton.Equals (menuButton)){
+					Menu();
+				} else if(currentButton.Equals (quitButton)){
+					Quit();
+				}
+			}
+		}
     }
 
     public void Pause()

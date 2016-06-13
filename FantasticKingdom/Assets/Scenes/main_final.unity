@@ -15397,6 +15397,10 @@ CapsuleCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400010, guid: b192f84d79ca14bc89d9752ce29cf027, type: 3}
   m_PrefabInternal: {fileID: 875696615}
+--- !u!1 &1132677560 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 175452, guid: f6eabba8cec324443b503064c7be2930, type: 2}
+  m_PrefabInternal: {fileID: 905215058}
 --- !u!1 &1134852254 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 66efa220d6ec6204eb32e11bdfab7e66, type: 3}
@@ -17819,6 +17823,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1347975051}
+--- !u!1 &1352173063 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 175452, guid: f6eabba8cec324443b503064c7be2930, type: 2}
+  m_PrefabInternal: {fileID: 1402333504}
 --- !u!1 &1359243437 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: f78e40d02c4fe4409b7104f23ef88e75, type: 3}
@@ -21805,6 +21813,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1615080504}
+--- !u!1 &1619965574 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 175452, guid: f6eabba8cec324443b503064c7be2930, type: 2}
+  m_PrefabInternal: {fileID: 595533170}
 --- !u!1 &1628197780
 GameObject:
   m_ObjectHideFlags: 0
@@ -22476,6 +22488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01ade7cd31842f42991061735bb139d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resumeButton: {fileID: 1352173063}
+  restartButton: {fileID: 1619965574}
+  menuButton: {fileID: 1973290013}
+  quitButton: {fileID: 1132677560}
 --- !u!114 &1682334113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25429,6 +25445,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 446030, guid: c5cabe1e29770334aab4542990f03b75, type: 2}
   m_PrefabInternal: {fileID: 1972930477}
+--- !u!1 &1973290013 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 175452, guid: f6eabba8cec324443b503064c7be2930, type: 2}
+  m_PrefabInternal: {fileID: 1398508660}
 --- !u!1 &1976403781
 GameObject:
   m_ObjectHideFlags: 0
